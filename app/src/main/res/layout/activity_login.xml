@@ -20,21 +20,32 @@
             android:layout_width="186dp"
             android:layout_height="48dp" />
 
+        <!-- EditText - Changed both username and password placeholder background into transparent -->
+        <!-- EditText - Change the text and hint color, #ADFFFFFF = #FFFFFF 67%-->
+        <!-- EditText - Changed the background to transparent but still retains the border-->
         <EditText
             android:id="@+id/username"
-            android:hint="User account name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:drawable/editbox_background" />
+            android:layout_height="50dp"
+            android:background="@drawable/transparent_background"
+            android:hint="Username"
+            android:textSize="14dp"
+            android:textColor="#ADFFFFFF"
+            android:textColorHint="#ADFFFFFF"
+            android:padding="10dp"/>
 
         <EditText
             android:id="@+id/password"
-            android:hint="Password"
-            android:inputType="textPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@android:drawable/editbox_background" />
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/transparent_background"
+            android:hint="Password"
+            android:textSize="14dp"
+            android:inputType="textPassword"
+            android:textColor="#ADFFFFFF"
+            android:textColorHint="#ADFFFFFF"
+            android:padding="10dp" />
 
         <TextView
             android:id="@+id/forgotPassword"
