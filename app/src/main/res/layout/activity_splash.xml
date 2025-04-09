@@ -1,0 +1,52 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_bg"
+    android:padding="24dp">
+
+    <!-- App Title -->
+    <TextView
+        android:id="@+id/title"
+        android:text="SUPERNOVA"
+        android:textSize="32sp"
+        android:textColor="@android:color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold" />
+
+    <!-- Tagline -->
+    <TextView
+        android:id="@+id/tagline"
+        android:text="Welcome to the Stars!"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        android:layout_below="@id/title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!-- Description -->
+    <TextView
+        android:id="@+id/desc"
+        android:text="Experience quality and fast efficient gaming experience. Discover new games and new friends!"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:layout_below="@id/tagline"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!-- Get Started Button -->
+    <Button
+        android:id="@+id/getStarted"
+        android:text="Get Started"
+        android:backgroundTint="#8BC34A"
+        android:textColor="@android:color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

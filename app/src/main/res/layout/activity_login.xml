@@ -1,0 +1,65 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/splash_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/appTitle"
+            android:text="SUPERNOVA"
+            android:textSize="32sp"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="50dp"
+            android:textStyle="bold"
+            android:layout_width="186dp"
+            android:layout_height="48dp" />
+
+        <EditText
+            android:id="@+id/username"
+            android:hint="User account name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_background" />
+
+        <EditText
+            android:id="@+id/password"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@android:drawable/editbox_background" />
+
+        <TextView
+            android:id="@+id/forgotPassword"
+            android:text="Forgot your password?"
+            android:textColor="#8BC34A"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/signInBtn"
+            android:text="Sign in"
+            android:backgroundTint="#8BC34A"
+            android:textColor="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/createAccountBtn"
+            android:text="Create an account"
+            android:backgroundTint="#333333"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</ScrollView>
