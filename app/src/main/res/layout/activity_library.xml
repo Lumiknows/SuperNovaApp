@@ -1,44 +1,220 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@drawable/splash_bg"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:padding="16dp"
+    android:layout_height="match_parent"
+    android:background="#0D0D0D">
+    <!-- Library Header -->
+    <RelativeLayout
+        android:id="@+id/library_header"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <!-- Header -->
-        <TextView
-            android:text="My Game Library"
-            android:textColor="@android:color/white"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="16dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <!-- Placeholder game entries -->
-        <TextView
-            android:text="• Bloodborne - Reviewed"
-            android:textColor="@android:color/white"
-            android:layout_marginBottom="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        android:layout_height="70dp"
+        android:layout_alignParentTop="true">
 
         <TextView
-            android:text="• Phantom Blade - Reviewed"
-            android:textColor="@android:color/white"
-            android:layout_marginBottom="8dp"
+            android:id="@+id/supernova_title"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="SUPERNOVA"
+            android:layout_marginTop="2dp"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <!-- Back Icon (Left) -->
+        <!-- src to be changed -->
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/supernova_title"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/cart"
+            android:contentDescription="Cart Button"/>
+
+        <!-- Bell Icon (Right) -->
+        <ImageButton
+            android:id="@+id/notif_button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/supernova_title"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/notif_bell"
+            android:contentDescription="Notif Bell Button"/>
+
+        <!-- Search Bar (Center) -->
+        <EditText
+            android:id="@+id/search_bar"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_below="@id/supernova_title"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_toStartOf="@id/notif_button"
+            android:layout_toEndOf="@id/back_button"
+            android:background="@drawable/search_background"
+            android:drawableEnd="@drawable/search_button"
+            android:paddingHorizontal="16dp"
+            android:singleLine="true"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#AAAAAA" />
+    </RelativeLayout>
+
+    <!-- Library Content Area -->
+    <ScrollView
+        android:id="@+id/content_area"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/library_header"
+        android:layout_above="@id/library_footer"
+        android:fillViewport="true">
 
         <TextView
-            android:text="• A Plague Tale Requiem - Reviewed"
-            android:textColor="@android:color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-</ScrollView>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Library Page"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="50sp"/>
+    </ScrollView>
+
+    <!-- Library Footer -->
+    <RelativeLayout
+        android:id="@+id/library_footer"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:background="#0D0D0D">
+
+        <!-- Footer Background -->
+        <LinearLayout
+            android:id="@+id/footer_bar"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="#0D0D0D"
+            android:weightSum="5">
+
+            <!-- Store -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/store_button"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/store"
+                    android:contentDescription="Store Button"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Store"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- Library -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/library_button"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/library"
+                    android:contentDescription="Library Button"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Library"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- Spacer for Profile -->
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <!-- Community -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/community_button"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/community"
+                    android:contentDescription="Community Button"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Community"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- Chat -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/chat_button"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/chat"
+                    android:contentDescription="Chat Button"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chat"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Profile Button (center, elevated) -->
+        <ImageButton
+            android:id="@+id/profile_button"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_alignTop="@id/footer_bar"
+            android:layout_centerHorizontal="true"
+            android:background="#00FFFFFF"
+            android:scaleType="centerInside"
+            android:src="@drawable/defaultprof" />
+    </RelativeLayout>
+</RelativeLayout>
