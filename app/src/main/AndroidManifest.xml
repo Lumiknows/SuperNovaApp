@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.supernovaapp">  <!-- Replace with your actual package name -->
+    package="com.example.supernovaapp">
 
     <application
         android:allowBackup="true"
@@ -13,26 +13,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SuperNovaApp"
         tools:targetApi="31">
-
         <!-- Splash is the launcher -->
         <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Login screen -->
-        <activity android:name=".LoginActivity" android:exported="true" />
-
-        <!-- Store screen -->
-        <activity android:name=".StoreActivity" android:exported="true" />
-
-        <!-- Add more like Library, Community, etc. when ready -->
-        <activity android:name=".LibraryActivity" android:exported="true" />
-
+        </activity> <!-- Login screen -->
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true" />
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

@@ -1,0 +1,60 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0D0D0D">
+
+    <FrameLayout
+        android:id="@+id/framelayout"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"/>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/bottom_tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:background="#0D0D0D"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
+        app:tabIndicatorColor="@color/white"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextColor="@color/white">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/store_button"
+            android:icon="@drawable/store"
+            android:text="@string/store" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/library_button"
+            android:icon="@drawable/library"
+            android:text="@string/library" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/profile"
+            android:icon="@drawable/defaultprof" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/community_button"
+            android:icon="@drawable/community"
+            android:text="@string/community" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/chat_button"
+            android:icon="@drawable/chat"
+            android:text="@string/chat" />
+    </com.google.android.material.tabs.TabLayout>
+</RelativeLayout>
