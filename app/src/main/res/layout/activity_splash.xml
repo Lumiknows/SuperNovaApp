@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/splash_bg"
@@ -8,7 +9,7 @@
     <TextView
         android:id="@+id/title"
         android:text="SUPERNOVA"
-        android:textSize="32sp"
+        android:textSize="37sp"
         android:textColor="@android:color/white"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
@@ -29,24 +30,30 @@
         android:layout_height="wrap_content" />
 
     <!-- Description -->
-    <TextView
-        android:id="@+id/desc"
-        android:text="Experience quality and fast efficient gaming experience. Discover new games and new friends!"
-        android:textSize="16sp"
-        android:textColor="@android:color/white"
-        android:layout_below="@id/tagline"
-        android:layout_marginTop="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
     <!-- Get Started Button -->
+
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/getStarted"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:text="Experience quality and fast efficient gaming experience. Discover new games and new friends!"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="16sp" />
+
     <Button
         android:id="@+id/getStarted"
-        android:text="Get Started"
-        android:backgroundTint="#8BC34A"
-        android:textColor="@android:color/white"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="#8BC34A"
+        android:text="Get Started"
+        android:textColor="@android:color/white"
+        app:cornerRadius="0dp"
+        android:layout_marginBottom="20dp"/>
 
 </RelativeLayout>

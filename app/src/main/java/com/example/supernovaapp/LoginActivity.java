@@ -15,8 +15,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        username = findViewById(R.id.username);
-        password = findViewById(R.id.password);
+        username = findViewById(R.id.login_username);
+        password = findViewById(R.id.login_password);
         signInBtn = findViewById(R.id.signInBtn);
         createAccountBtn = findViewById(R.id.createAccountBtn);
 
@@ -25,9 +25,9 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-
         createAccountBtn.setOnClickListener(v -> {
-            // Navigate to RegisterActivity
+            Intent intent = new Intent(LoginActivity.this, CreateAccount.class);
+            startActivity(intent);
         });
     }
 }
