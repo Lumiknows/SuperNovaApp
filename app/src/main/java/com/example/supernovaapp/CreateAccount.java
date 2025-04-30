@@ -13,7 +13,7 @@ public class CreateAccount extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.create_acount);
+        setContentView(R.layout.create_account);
 
         login_button = findViewById(R.id.login_button);
         signup_button = findViewById(R.id.signup_button);
