@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">SuperNovaApp</string>
+
+    <!-- Header Content Description-->
+    <string name="cartDescription">Cart Button</string>
+    <string name="bellDescription">Notification Bell Button</string>
+    <!-- To be changed with the actual logo -->
+    <string name="headerText">SUPERNOVA</string>
+
+    <!-- Footer Button Name -->
+    <string name="store">Store</string>
+    <string name="library">Library</string>
+    <string name="community">Community</string>
+    <string name="chat">Chat</string>
+
+    <string name="hello_blank_fragment">Blank Fragment</string>
 </resources>
