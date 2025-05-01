@@ -7,8 +7,8 @@
     <RelativeLayout
         android:id="@+id/store_header"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_alignParentTop="true">
+        android:layout_height="90dp"
+        android:padding="10dp">
 
         <!-- TODO! android:text="@string/headerText should be change to the actual logo" -->
         <TextView
@@ -22,42 +22,30 @@
             android:textSize="14sp"
             android:textStyle="bold" />
 
-        <!-- Cart Icon (Left) -->
+        <!-- Profile Icon -->
         <ImageButton
-            android:id="@+id/cart_button"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_below="@id/supernova_title"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/cart"
-            android:contentDescription="@string/cartDescription"/>
-
-        <!-- Bell Icon (Right) -->
-        <ImageButton
-            android:id="@+id/notif_button"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_below="@id/supernova_title"
+            android:id="@+id/profile"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
+            android:scaleType="center"
+            android:adjustViewBounds="true"
             android:background="@android:color/transparent"
-            android:src="@drawable/notif_bell"
-            android:contentDescription="@string/bellDescription"/>
+            android:src="@drawable/defaultprof"
+            android:contentDescription="@string/profileDescription"/>
 
         <!-- Search Bar (Center) -->
         <EditText
             android:id="@+id/search_bar"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_below="@id/supernova_title"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="10dp"
-            android:layout_toStartOf="@id/notif_button"
-            android:layout_toEndOf="@id/cart_button"
+            android:layout_toStartOf="@id/profile"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="8dp"
             android:background="@drawable/search_background"
             android:drawableEnd="@drawable/search_button"
             android:paddingHorizontal="16dp"
