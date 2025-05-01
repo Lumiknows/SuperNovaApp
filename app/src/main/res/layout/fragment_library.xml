@@ -22,18 +22,7 @@
             android:textSize="14sp"
             android:textStyle="bold" />
 
-        <!-- Back Icon (Left) -->
-        <!-- src to be changed -->
-        <ImageButton
-            android:id="@+id/back_button"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_below="@id/supernova_title"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/cart" />
+        <!-- Removed back button, maka back ra man gamit ang bottom tabs -->
 
         <!-- Bell Icon (Right) -->
         <ImageButton
@@ -42,7 +31,7 @@
             android:layout_height="30dp"
             android:layout_below="@id/supernova_title"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="13dp"
             android:layout_marginEnd="10dp"
             android:background="@android:color/transparent"
             android:src="@drawable/notif_bell"
@@ -51,16 +40,15 @@
         <!-- Search Bar (Center) -->
         <EditText
             android:id="@+id/search_bar"
-            android:layout_width="0dp"
+            android:layout_width="300dp"
             android:layout_height="60dp"
             android:layout_below="@id/supernova_title"
-            android:layout_marginHorizontal="12dp"
             android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="20dp"
             android:layout_toStartOf="@id/notif_button"
-            android:layout_toEndOf="@id/back_button"
             android:background="@drawable/search_background"
             android:drawableEnd="@drawable/search_button"
-            android:paddingHorizontal="16dp"
+            android:paddingHorizontal="18dp"
             android:singleLine="true"
             android:textColor="#FFFFFF"
             android:textColorHint="#AAAAAA" />

@@ -23,38 +23,6 @@
         app:tabSelectedTextColor="@color/white"
         app:tabTextColor="@color/white">
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/store_button"
-            android:icon="@drawable/store"
-            android:text="@string/store" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/library_button"
-            android:icon="@drawable/library"
-            android:text="@string/library" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/profile"
-            android:icon="@drawable/defaultprof" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/community_button"
-            android:icon="@drawable/community"
-            android:text="@string/community" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/chat_button"
-            android:icon="@drawable/chat"
-            android:text="@string/chat" />
+        <!-- Remove tab items, changed into tab layout in MainActivity.java -->
     </com.google.android.material.tabs.TabLayout>
 </RelativeLayout>
