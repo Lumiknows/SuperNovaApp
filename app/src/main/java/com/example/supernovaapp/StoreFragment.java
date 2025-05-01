@@ -1,12 +1,19 @@
 package com.example.supernovaapp;
 
+import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,6 +66,25 @@ public class StoreFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_store, container, false);
+        View view = inflater.inflate(R.layout.fragment_store, container, false);
+
+        ImageButton profileBtn = view.findViewById(R.id.profile);
+        ViewPager2 viewPager2 = view.findViewById(R.id.sale_carousel);
+
+        profileBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), ProfilePage.class);
+            startActivity(intent);
+        });
+
+        List<Integer> imageList = new ArrayList<>();
+        imageList.add(R.drawable.phantomblade);
+        imageList.add(R.drawable.bloodborne);
+        imageList.add(R.drawable.crimsondesert);
+        imageList.add(R.drawable.blackwukong);
+        imageList.add(R.drawable.coolgame);
+
+        CarouselAdapter adapter = new CarouselAdapter(imageList, getContext());
+        viewPager2.setAdapter(adapter);
+        return view;
     }
 }
