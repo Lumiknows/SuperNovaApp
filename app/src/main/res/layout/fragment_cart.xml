@@ -7,8 +7,8 @@
     <RelativeLayout
         android:id="@+id/store_header"
         android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:padding="10dp">
+        android:layout_height="70dp"
+        android:layout_alignParentTop="true">
 
         <!-- TODO! android:text="@string/headerText should be change to the actual logo" -->
         <TextView
@@ -21,37 +21,6 @@
             android:textColor="#FFFFFF"
             android:textSize="14sp"
             android:textStyle="bold" />
-
-        <!-- Profile Icon -->
-        <ImageButton
-            android:id="@+id/profile"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="8dp"
-            android:scaleType="center"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
-            android:src="@drawable/defaultprof"
-            android:contentDescription="@string/profileDescription"/>
-
-        <!-- Search Bar (Center) -->
-        <EditText
-            android:id="@+id/search_bar"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@id/supernova_title"
-            android:layout_toStartOf="@id/profile"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/search_background"
-            android:drawableEnd="@drawable/search_button"
-            android:paddingHorizontal="16dp"
-            android:singleLine="true"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#AAAAAA" />
     </RelativeLayout>
 
     <!-- Store Content Area -->
@@ -65,7 +34,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Store Page"
+            android:text="Cart Page"
             android:textColor="@color/white"
             android:gravity="center"
             android:textSize="50sp"/>
