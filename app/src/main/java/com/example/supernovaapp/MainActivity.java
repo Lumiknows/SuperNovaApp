@@ -1,6 +1,7 @@
 package com.example.supernovaapp;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import androidx.activity.EdgeToEdge;
@@ -25,6 +26,18 @@ public class MainActivity extends AppCompatActivity {
 
         frameLayout = (FrameLayout) findViewById(R.id.framelayout);
         tabLayout = (TabLayout) findViewById(R.id.bottom_tab_layout);
+
+        tabLayout.addTab(tabLayout.newTab().setText("Store").setIcon(R.drawable.store));
+        tabLayout.addTab(tabLayout.newTab().setText("Library").setIcon(R.drawable.library));
+
+        TabLayout.Tab profileTab = tabLayout.newTab().setIcon(R.drawable.defaultprof);
+        tabLayout.addTab(profileTab);
+        // Change the profile size to become slightly bigger than the other tab
+        View customView = getLayoutInflater().inflate(R.layout.custom_profile_tab, null);
+        profileTab.setCustomView(customView);
+
+        tabLayout.addTab(tabLayout.newTab().setText("Community").setIcon(R.drawable.community));
+        tabLayout.addTab(tabLayout.newTab().setText("Chat").setIcon(R.drawable.chat));
 
         getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new StoreFragment())
                 .addToBackStack(null)
