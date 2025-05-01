@@ -29,15 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayout.addTab(tabLayout.newTab().setText("Store").setIcon(R.drawable.store));
         tabLayout.addTab(tabLayout.newTab().setText("Library").setIcon(R.drawable.library));
-
-        TabLayout.Tab profileTab = tabLayout.newTab().setIcon(R.drawable.defaultprof);
-        tabLayout.addTab(profileTab);
-        // Change the profile size to become slightly bigger than the other tab
-        View customView = getLayoutInflater().inflate(R.layout.custom_profile_tab, null);
-        profileTab.setCustomView(customView);
-
-        tabLayout.addTab(tabLayout.newTab().setText("Community").setIcon(R.drawable.community));
-        tabLayout.addTab(tabLayout.newTab().setText("Chat").setIcon(R.drawable.chat));
+        tabLayout.addTab(tabLayout.newTab().setText("Cart").setIcon(R.drawable.cart));
+        tabLayout.addTab(tabLayout.newTab().setText("News").setIcon(R.drawable.notif_bell));
 
         getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new StoreFragment())
                 .addToBackStack(null)
@@ -56,13 +49,10 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new LibraryFragment();
                         break;
                     case 2:
-                        fragment = new ProfileFragment();
+                        fragment = new CartFragment();
                         break;
                     case 3:
-                        fragment = new CommunityFragment();
-                        break;
-                    case 4:
-                        fragment = new ChatFragment();
+                        fragment = new NotifFragment();
                         break;
                 }
 
