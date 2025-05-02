@@ -61,23 +61,23 @@
         android:layout_height="match_parent"
         android:layout_below="@id/store_header">
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/store_content"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
-
+            android:paddingBottom="20dp">
+            <!-- TOP SELLER AREA -->
             <ImageButton
                 android:id="@+id/bloodborne"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:background="@drawable/bloodborne"/>
-
+            <!-- SALE AREA -->
             <RelativeLayout
                 android:id="@+id/sale_area"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/bloodborne"
                 android:layout_marginTop="20dp"
                 android:paddingStart="25dp"
                 android:paddingEnd="25dp">
@@ -88,12 +88,12 @@
                     android:layout_height="20dp"
                     android:text="ON SALE"
                     android:textColor="@color/white"
-                    android:textAlignment="center"
                     android:textSize="12sp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true" />
 
                 <TextView
+                    android:id="@+id/sale_seeAll_text"
                     android:layout_width="100dp"
                     android:layout_height="20dp"
                     android:layout="@id/sale_text"
@@ -104,15 +104,52 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"/>
             </RelativeLayout>
-
-            <!-- Carousel type of list should go here -->
+            <!-- SALE CAROUSEL -->
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/sale_carousel"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_below="@id/sale_area"
                 android:layout_marginEnd="20dp"
                 android:layout_marginStart="20dp"/>
-        </RelativeLayout>
+
+            <!-- RECOMMENDED AREA -->
+            <RelativeLayout
+                android:id="@+id/recommended_area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingStart="25dp"
+                android:paddingEnd="25dp">
+
+                <TextView
+                    android:id="@+id/recommended_text"
+                    android:layout_width="185dp"
+                    android:layout_height="20dp"
+                    android:text="FEATURED AND RECOMMENDED"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true" />
+
+                <TextView
+                    android:id="@+id/recommended_seeAll_text"
+                    android:layout_width="100dp"
+                    android:layout_height="20dp"
+                    android:layout="@id/sale_text"
+                    android:text="SEE ALL"
+                    android:textColor="#11CBFF"
+                    android:textAlignment="center"
+                    android:textSize="12sp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
+            <!-- RECOMMENDED CAROUSEL -->
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/recommended_carousel"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"/>
+        </LinearLayout>
     </ScrollView>
 </RelativeLayout>
