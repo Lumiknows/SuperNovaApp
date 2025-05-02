@@ -21,26 +21,26 @@ public class CarouselAdapter extends RecyclerView.Adapter<CarouselAdapter.Carous
     }
 
     public static class CarouselViewHolder extends RecyclerView.ViewHolder {
-        ImageButton saleImgCarousel;
+        ImageButton carouselImgBtn;
 
         public CarouselViewHolder(@NonNull View itemView) {
             super(itemView);
-            saleImgCarousel = itemView.findViewById(R.id.saleCarouselImg);
+            carouselImgBtn = itemView.findViewById(R.id.carouselImageBtn);
         }
     }
 
     @NonNull
     @Override
     public CarouselViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.sale_carousel, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.carousel_item, parent, false);
         return new CarouselViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CarouselViewHolder holder, int position) {
-        holder.saleImgCarousel.setImageResource(imageList.get(position));
+        holder.carouselImgBtn.setImageResource(imageList.get(position));
 
-        holder.saleImgCarousel.setOnClickListener(v -> {
+        holder.carouselImgBtn.setOnClickListener(v -> {
             // To be continue. HAHAHHAHA
         });
     }
