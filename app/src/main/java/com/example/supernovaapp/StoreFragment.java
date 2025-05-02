@@ -69,22 +69,40 @@ public class StoreFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_store, container, false);
 
         ImageButton profileBtn = view.findViewById(R.id.profile);
-        ViewPager2 viewPager2 = view.findViewById(R.id.sale_carousel);
+
+        // Carousel View Pager
+        ViewPager2 sale_viewPager2 = view.findViewById(R.id.sale_carousel);
+        ViewPager2 rec_viewPager2 = view.findViewById(R.id.recommended_carousel);
+
+        // List Array for Carousel Items
+        List<Integer> sale_imageList = new ArrayList<>();
+        List<Integer> rec_imageList = new ArrayList<>();
+
+        // Carousel Adapters
+        CarouselAdapter saleCarouselAdapter = new CarouselAdapter(sale_imageList, getContext());
+        CarouselAdapter recCarouselAdapter = new CarouselAdapter(rec_imageList, getContext());
 
         profileBtn.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), ProfilePage.class);
             startActivity(intent);
         });
 
-        List<Integer> imageList = new ArrayList<>();
-        imageList.add(R.drawable.phantomblade);
-        imageList.add(R.drawable.bloodborne);
-        imageList.add(R.drawable.crimsondesert);
-        imageList.add(R.drawable.blackwukong);
-        imageList.add(R.drawable.coolgame);
+        // Items for sale carousel
+        sale_imageList.add(R.drawable.phantomblade);
+        sale_imageList.add(R.drawable.bloodborne);
+        sale_imageList.add(R.drawable.crimsondesert);
+        sale_imageList.add(R.drawable.blackwukong);
+        sale_imageList.add(R.drawable.coolgame);
 
-        CarouselAdapter adapter = new CarouselAdapter(imageList, getContext());
-        viewPager2.setAdapter(adapter);
+        // Items for recommended carousel
+        rec_imageList.add(R.drawable.coolgame);
+        rec_imageList.add(R.drawable.crimsondesert);
+        rec_imageList.add(R.drawable.blackwukong);
+        rec_imageList.add(R.drawable.phantomblade);
+        rec_imageList.add(R.drawable.bloodborne);
+
+        sale_viewPager2.setAdapter(saleCarouselAdapter);
+        rec_viewPager2.setAdapter(recCarouselAdapter);
         return view;
     }
 }
