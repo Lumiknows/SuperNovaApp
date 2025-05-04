@@ -40,6 +40,18 @@ dependencies {
     implementation libs.material
     implementation libs.activity
     implementation libs.constraintlayout
+
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'         // new dependencies yawa oy
+    implementation 'androidx.media3:media3-exoplayer:1.2.1'
+    implementation 'androidx.media3:media3-ui:1.2.1'
+
+    implementation 'androidx.appcompat:appcompat:1.5.1'  // Required for AppCompatActivity
+    implementation 'androidx.media3:media3-exoplayer:1.0.0'  // ExoPlayer dependency
+    implementation 'androidx.media3:media3-ui:1.0.0'  // ExoPlayer UI dependency
+    implementation 'androidx.cardview:cardview:1.0.0'  // If using CardView in layout
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'  // Optional for layout
+    implementation 'androidx.core:core-ktx:1.8.0'  // Optional for Kotlin extensions if needed
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
