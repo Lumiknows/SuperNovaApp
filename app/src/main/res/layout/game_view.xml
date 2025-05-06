@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#111">
+
+    <!-- VideoView for video playback -->
+    <android.widget.VideoView
+        android:id="@+id/video_view"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_gravity="top" />
+
+    <!-- Scrollable content below video -->
+
+    <ImageButton
+        android:id="@+id/playBtn"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="100dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="Play Button"
+        android:src="@drawable/play_button"
+        android:visibility="visible"
+        app:layout_anchor="@+id/video_view"
+        app:layout_anchorGravity="center" />
+
+    <ImageButton
+        android:id="@+id/pauseBtn"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="100dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="Pause Button"
+        android:src="@drawable/pause_button"
+        android:visibility="invisible"
+        app:layout_anchor="@+id/playBtn"
+        app:layout_anchorGravity="center" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="320dp"
+        android:clipToPadding="false">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp"
+            android:backgroundTint="#1A1A1A">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp">
+
+                <!-- Game Title -->
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Black Myth: Wukong"
+                    android:textColor="#FFFFFF"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <!-- Price -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$5.99"
+                    android:textColor="#A6E964"
+                    android:textSize="18sp"
+                    android:layout_marginTop="6dp" />
+
+                <!-- Developer and release info -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Game Science • Action, RPG • 19 Aug, 2024"
+                    android:textColor="#BBBBBB"
+                    android:textSize="13sp"
+                    android:layout_marginTop="4dp" />
+
+                <!-- Description -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Black Myth: Wukong is an action RPG rooted in Chinese mythology. Fight your way through breathtaking landscapes and powerful bosses with legendary combat."
+                    android:textColor="#DDDDDD"
+                    android:textSize="14sp"
+                    android:layout_marginTop="10dp" />
+
+                <!-- Tags -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Story Driven"
+                        android:background="@drawable/tag_background"
+                        android:textColor="#FFFFFF"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="4dp"
+                        android:layout_marginEnd="8dp"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Action"
+                        android:background="@drawable/tag_background"
+                        android:textColor="#FFFFFF"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="4dp"
+                        android:layout_marginEnd="8dp"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="RPG"
+                        android:background="@drawable/tag_background"
+                        android:textColor="#FFFFFF"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="4dp"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <!-- Add to Cart -->
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Add to Cart"
+                    android:backgroundTint="#A6E964"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginTop="20dp"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
