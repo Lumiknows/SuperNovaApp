@@ -1,81 +1,88 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/splash_bg"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_bg"
+    android:padding="24dp">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:padding="24dp"
+    <TextView
+        android:id="@+id/appTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="48dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        android:text="SUPERNOVA"
+        android:textColor="@android:color/white"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:gravity="center" />
 
-        <TextView
-            android:id="@+id/appTitle"
-            android:text="SUPERNOVA"
-            android:textSize="32sp"
-            android:textColor="@android:color/white"
-            android:layout_marginBottom="50dp"
-            android:textStyle="bold"
-            android:layout_width="186dp"
-            android:layout_height="48dp" />
+    <EditText
+        android:id="@+id/login_username"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_below="@id/appTitle"
+        android:background="@drawable/transparent_background"
+        android:hint="Username"
+        android:textSize="12dp"
+        android:textColor="#ADFFFFFF"
+        android:textColorHint="#ADFFFFFF"
+        android:padding="10dp" />
 
-        <!-- EditText - Changed both username and password placeholder background into transparent -->
-        <!-- EditText - Change the text and hint color, #ADFFFFFF = #FFFFFF 67%-->
-        <!-- EditText - Changed the background to transparent but still retains the border-->
-        <EditText
-            android:id="@+id/login_username"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:background="@drawable/transparent_background"
-            android:hint="Username"
-            android:textSize="12dp"
-            android:textColor="#ADFFFFFF"
-            android:textColorHint="#ADFFFFFF"
-            android:padding="10dp"/>
+    <EditText
+        android:id="@+id/login_password"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_below="@id/login_username"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/transparent_background"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textSize="12dp"
+        android:textColor="#ADFFFFFF"
+        android:textColorHint="#ADFFFFFF"
+        android:padding="10dp" />
 
-        <EditText
-            android:id="@+id/login_password"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/transparent_background"
-            android:hint="Password"
-            android:textSize="12dp"
-            android:inputType="textPassword"
-            android:textColor="#ADFFFFFF"
-            android:textColorHint="#ADFFFFFF"
-            android:padding="10dp" />
+    <TextView
+        android:id="@+id/forgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login_password"
+        android:layout_marginTop="10dp"
+        android:text="Forgot your password?"
+        android:textColor="#8BC34A" />
 
-        <TextView
-            android:id="@+id/forgotPassword"
-            android:text="Forgot your password?"
-            android:textColor="#8BC34A"
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/signInBtn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/forgotPassword"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#8BC34A"
+        android:text="Sign in"
+        android:textColor="@android:color/white"
+        app:cornerRadius="0dp" />
 
-        <Button
-            android:id="@+id/signInBtn"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="20dp"
-            android:backgroundTint="#8BC34A"
-            android:text="Sign in"
-            android:textColor="@android:color/white"
-            app:cornerRadius="0dp" />
+    <ImageView
+        android:id="@+id/login_border"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/signInBtn"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/border"
+        android:scaleType="fitXY" />
 
-        <Button
-            android:id="@+id/createAccountBtn"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/transparent_background"
-            android:text="Create an account"
-            android:textColor="@android:color/white"
-            android:textColorLink="@color/white"
-            app:strokeColor="@color/white" />
-    </LinearLayout>
-</ScrollView>
+    <Button
+        android:id="@+id/createAccountBtn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignTop="@id/login_border"
+        android:layout_alignBottom="@id/login_border"
+        android:text="Create an account"
+        android:background="@android:color/transparent"
+        android:textColor="@android:color/white"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:padding="10dp" />
+
+</RelativeLayout>
