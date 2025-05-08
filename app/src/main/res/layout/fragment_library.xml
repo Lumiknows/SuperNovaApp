@@ -1,75 +1,126 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0D0D0D">
-    <!-- Library Header -->
-    <RelativeLayout
-        android:id="@+id/library_header"
+    android:background="#111111"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Header -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:padding="10dp">
+        android:layout_height="85dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingBottom="16dp">
 
-        <!-- TODO! android:text="@string/headerText should be change to the actual logo" -->
         <TextView
-            android:id="@+id/supernova_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="@string/headerText"
-            android:layout_marginTop="2dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="144dp"
+            android:text="SUPERNOVA"
             android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textSize="16sp" />
 
-        <!-- Profile Icon -->
         <ImageButton
             android:id="@+id/profile"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="8dp"
             android:scaleType="centerCrop"
             android:adjustViewBounds="true"
             android:background="@drawable/circle_mask"
             android:clipToOutline="true"
-            android:src="@drawable/defaultprof"
-            android:contentDescription="@string/profileDescription"/>
+            android:src="@drawable/profileavatar"
+            android:contentDescription="@string/profileDescription" />
+    </LinearLayout>
 
+    <!-- Title -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GodRick's Cart"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:paddingBottom="8dp" />
 
-        <!-- Search Bar (Center) -->
-        <EditText
-            android:id="@+id/search_bar"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@id/supernova_title"
-            android:layout_toStartOf="@id/profile"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/search_background"
-            android:drawableEnd="@drawable/search_button"
-            android:paddingHorizontal="16dp"
-            android:singleLine="true"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#AAAAAA" />
-    </RelativeLayout>
-
-    <!-- Library Content Area -->
-    <ScrollView
-        android:id="@+id/content_area"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/library_header"
-        android:fillViewport="true">
+    <!-- Filters -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Library Page"
-            android:textColor="@color/white"
-            android:gravity="center"
-            android:textSize="50sp"/>
-    </ScrollView>
-</RelativeLayout>
+            android:text="Sort by:"
+            android:textColor="#CCCCCC"
+            android:textSize="12dp"
+            android:paddingEnd="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recently Added"
+            android:textSize="12dp"
+            android:textColor="#FFFFFF" />
+
+        <ImageButton
+            android:id="@+id/recentdown"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/down"
+            android:background="@android:color/transparent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sort by:"
+            android:textColor="#CCCCCC"
+            android:textSize="12dp"
+            android:layout_marginLeft="15dp"
+            android:paddingEnd="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="All Types"
+            android:textSize="12dp"
+            android:textColor="#FFFFFF" />
+
+        <ImageButton
+            android:id="@+id/alldown"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/down"
+            android:background="@android:color/transparent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filters"
+            android:textSize="12dp"
+            android:layout_marginLeft="15dp"
+            android:textColor="#FFFFFF"
+            android:paddingEnd="8dp" />
+        <ImageButton
+            android:id="@+id/filterdown"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/down"
+            android:background="@android:color/transparent"/>
+    </LinearLayout>
+
+    <!-- RecyclerView for Library -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/libraryRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingTop="8dp"
+        android:clipToPadding="false" />
+</LinearLayout>

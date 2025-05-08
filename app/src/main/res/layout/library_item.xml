@@ -45,48 +45,36 @@
             android:layout_marginTop="4dp">
 
             <TextView
-                android:id="@+id/gamePrice"
+                android:id="@+id/hrs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="$12.99"
+                android:text="10.2 hrs"
                 android:textColor="#FFFFFF"
                 android:textSize="13sp" />
-
-            <TextView
-                android:id="@+id/gameDiscount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="30%"
-                android:layout_marginStart="6dp"
-                android:textColor="#4CAF50"
-                android:textSize="11sp"
-                android:background="@drawable/discount_bg"
-                android:padding="2dp" />
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:id="@+id/removeFromCartBtn"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_marginTop="4dp"
-                android:backgroundTint="#B71C1C"
-                android:text="Remove"
-                android:textColor="#FFFFFF"
-                android:textSize="10sp"
-                app:cornerRadius="5dp" />
+                android:layout_height="wrap_content">
 
-            <ImageButton
-                android:id="@+id/removewish"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginTop="2dp"
-                android:backgroundTint="#252525"
-                android:src="@drawable/bookmarked2" />
-        </LinearLayout>
+                <Button
+                    android:id="@+id/review"
+                    android:layout_width="100dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="4dp"
+                    android:backgroundTint="#252525"
+                    android:text="Review"
+                    android:textColor="#FFFFFF"
+                    android:textSize="10sp"
+                    app:cornerRadius="3dp"/>
+
+                <ImageButton
+                    android:id="@+id/download"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="2dp"
+                    android:backgroundTint="#252525"
+                    android:src="@drawable/download" />
+            </LinearLayout>
     </LinearLayout>
 </LinearLayout>

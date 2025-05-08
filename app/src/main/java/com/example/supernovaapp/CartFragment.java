@@ -51,8 +51,8 @@ public class CartFragment extends Fragment {
         cartItemList = new ArrayList<>();
 
         // Sample data
-        cartItemList.add(new CartItem("Game 1", "Studio A", "$12.99", "30%", R.drawable.ready_or_not));
-        cartItemList.add(new CartItem("Game 2", "Studio B", "$14.99", "20%", R.drawable.ready_or_not));
+        cartItemList.add(new CartItem("Ready or Not", "VOID Interactive", "$12.99", "30%", R.drawable.ready_or_not));
+        cartItemList.add(new CartItem("Crimson Desert", "Pearl Abyss", "$14.99", "20%", R.drawable.crimson));
 
         // Set up the adapter and layout manager
         cartAdapter = new CartAdapter(cartItemList, new CartAdapter.OnRemoveListener() {
