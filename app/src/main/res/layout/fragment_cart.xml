@@ -1,42 +1,126 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0D0D0D">
-    <!-- Store Header -->
-    <RelativeLayout
-        android:id="@+id/store_header"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_alignParentTop="true">
+    android:background="#111111"
+    android:orientation="vertical"
+    android:padding="16dp">
 
-        <!-- TODO! android:text="@string/headerText should be change to the actual logo" -->
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingBottom="16dp">
+
         <TextView
-            android:id="@+id/supernova_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="144dp"
+            android:text="SUPERNOVA"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:textSize="16sp" />
+
+        <ImageButton
+            android:id="@+id/profile"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="8dp"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            android:background="@drawable/circle_mask"
+            android:clipToOutline="true"
+            android:src="@drawable/profileavatar"
+            android:contentDescription="@string/profileDescription" />
+    </LinearLayout>
+
+    <!-- Title -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GodRick's Cart"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:paddingBottom="8dp" />
+
+    <!-- Filters -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="@string/headerText"
-            android:layout_marginTop="2dp"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-    </RelativeLayout>
-
-    <!-- Store Content Area -->
-    <ScrollView
-        android:id="@+id/content_area"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/store_header"
-        android:fillViewport="true">
+            android:text="Sort by:"
+            android:textColor="#CCCCCC"
+            android:textSize="12dp"
+            android:paddingEnd="8dp" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cart Page"
-            android:textColor="@color/white"
-            android:gravity="center"
-            android:textSize="50sp"/>
-    </ScrollView>
-</RelativeLayout>
+            android:text="Recently Added"
+            android:textSize="12dp"
+            android:textColor="#FFFFFF" />
+
+        <ImageButton
+            android:id="@+id/recentdown"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/down"
+            android:background="@android:color/transparent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sort by:"
+            android:textColor="#CCCCCC"
+            android:textSize="12dp"
+            android:layout_marginLeft="15dp"
+            android:paddingEnd="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="All Types"
+            android:textSize="12dp"
+            android:textColor="#FFFFFF" />
+
+        <ImageButton
+            android:id="@+id/alldown"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/down"
+            android:background="@android:color/transparent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filters"
+            android:textSize="12dp"
+            android:layout_marginLeft="15dp"
+            android:textColor="#FFFFFF"
+            android:paddingEnd="8dp" />
+        <ImageButton
+            android:id="@+id/filterdown"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/down"
+            android:background="@android:color/transparent"/>
+    </LinearLayout>
+
+    <!-- RecyclerView for cart items -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cartRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingTop="8dp"
+        android:clipToPadding="false" />
+</LinearLayout>

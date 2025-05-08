@@ -224,7 +224,7 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/blackwukong"
+                android:src="@drawable/wukonglogo"
                 android:contentDescription="Black Myth: Wukong" />
 
             <LinearLayout

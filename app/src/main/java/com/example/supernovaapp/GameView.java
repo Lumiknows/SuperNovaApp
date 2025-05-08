@@ -99,7 +99,7 @@ public class GameView extends AppCompatActivity {
         // Wish Button Toggle
         wishBtn.setOnClickListener(v -> {
             isWished = !isWished;
-            wishBtn.setImageResource(isWished ? R.drawable.wish_shaded : R.drawable.wish);
+            wishBtn.setImageResource(isWished ? R.drawable.bookmarked : R.drawable.bookmark);
         });
 
         // Add to Cart Toggle
