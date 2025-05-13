@@ -127,6 +127,16 @@
             android:layout_toRightOf="@id/filter_cart"/>
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/emptyCartMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your cart is empty"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:visibility="gone" />
+
     <!-- RecyclerView for cart items -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cartRecyclerView"
