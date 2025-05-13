@@ -10,51 +10,38 @@ import androidx.fragment.app.Fragment;
 
 public class NotifFragment extends Fragment {
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    private String mParam1;
-    private String mParam2;
-
     public NotifFragment() {
         // Required empty public constructor
-    }
-
-    public static NotifFragment newInstance(String param1, String param2) {
-        NotifFragment fragment = new NotifFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_notif, container, false);  // Make sure 'fragment_notif.xml' exists
 
-        // Find the layout for Wukong (make sure it has android:id="@+id/wukong_layout" in fragment_notif.xml)
-        View wukongLayout = view.findViewById(R.id.wukong_layout);
+        View view = inflater.inflate(R.layout.fragment_notif, container, false);
 
-        // Set click listener to open GameView activity
-        wukongLayout.setOnClickListener(this::onClick);
+        view.findViewById(R.id.wukong_layout).setOnClickListener(this::onClick);
+        view.findViewById(R.id.eldenring_layout).setOnClickListener(this::onClick);
+        view.findViewById(R.id.residentevil_layout).setOnClickListener(this::onClick);
 
         return view;
     }
 
     private void onClick(View v) {
-        Intent intent = new Intent(getActivity(), GameView.class);  // Make sure GameView activity is in the manifest
-        startActivity(intent);
+        int id = v.getId();
+        Intent intent = null;
+
+        if (id == R.id.wukong_layout) {
+            intent = new Intent(getActivity(), GameView1.class);
+        } else if (id == R.id.eldenring_layout) {
+            intent = new Intent(getActivity(), GameView2.class);
+        } else if (id == R.id.residentevil_layout) {
+            intent = new Intent(getActivity(), GameView3.class);
+        }
+
+        if (intent != null) {
+            startActivity(intent);
+        }
     }
+
 }

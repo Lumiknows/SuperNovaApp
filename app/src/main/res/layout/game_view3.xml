@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#111">
+
+    <!-- Video container at the top -->
+    <FrameLayout
+        android:id="@+id/video_container"
+        android:layout_width="match_parent"
+        android:layout_height="250dp">
+
+        <VideoView
+            android:id="@+id/video_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageButton
+            android:id="@+id/playBtn"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:contentDescription="Play Button"
+            android:src="@drawable/play_button"
+            android:visibility="visible" />
+
+        <ImageButton
+            android:id="@+id/pauseBtn"
+            android:layout_width="298dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:contentDescription="Pause Button"
+            android:src="@drawable/pause_button"
+            android:visibility="invisible" />
+
+        <ImageButton
+            android:id="@+id/muteBtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="15dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Mute Button"
+            android:src="@drawable/mute"
+            android:visibility="visible" />
+
+        <ImageButton
+            android:id="@+id/unmuteBtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="15dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Unmute Button"
+            android:src="@drawable/unmute"
+            android:visibility="invisible" />
+    </FrameLayout>
+
+    <!-- Scrollable game info -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="225dp"
+        android:layout_marginBottom="80dp"
+        android:clipToPadding="false">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="10dp"
+            android:backgroundTint="#1A1A1A">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <!-- Title -->
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Resident Evil Village"
+                    android:textColor="#FFFFFF"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <!-- Price -->
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="$39.99"
+                    android:textColor="#A6E964"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="20dp">
+
+                    <!-- Studio -->
+                    <TextView
+                        android:id="@+id/studio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="CAPCOM Co., Ltd."
+                        android:textColor="#BBBBBB"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/date"
+                        android:paddingLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="  7 May, 2021"
+                        android:textColor="#BBBBBB"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <!-- Description -->
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#DDDDDD"
+                    android:textSize="14sp"
+                    android:text="Experience survival horror like never before in Resident Evil Village. Set in a chilling village filled with monstrous enemies, the game follows Ethan Winters as he unravels terrifying mysteries in search of his kidnapped daughter." />
+
+                <!-- Tags -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/genre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/tag_background"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="4dp"
+                        android:text="Horror"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/tag_background"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="4dp"
+                        android:text="Survival"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tag_background"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="4dp"
+                        android:text="Story Rich"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="3dp"
+                    android:text="System Requirements"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#CCCCCC"
+                    android:textSize="14sp"
+                    android:layout_marginLeft="3dp"
+                    android:text="Minimum:\n\n• Requires a 64-bit processor and operating system\n• OS: Windows 10 (64-bit)\n• Processor: AMD Ryzen 3 1200 / Intel Core i5-7500\n• Memory: 8 GB RAM\n• Graphics: AMD Radeon RX 560 with 4GB VRAM / NVIDIA GeForce GTX 1050 Ti with 4GB VRAM\n• DirectX: Version 12\n• Storage: 50 GB available space\n• Additional Notes: Performance may vary on lower-end systems." />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#CCCCCC"
+                    android:textSize="14sp"
+                    android:layout_marginLeft="3dp"
+                    android:text="Recommended:\n\n• Requires a 64-bit processor and operating system\n• OS: Windows 10 (64-bit)\n• Processor: AMD Ryzen 5 3600 / Intel Core i7 8700\n• Memory: 16 GB RAM\n• Graphics: AMD Radeon RX 5700 / NVIDIA GeForce GTX 1070\n• DirectX: Version 12\n• Storage: 50 GB available space\n• Additional Notes: SSD recommended for optimal performance." />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#333" />
+
+                <!-- Reviews Header -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="User Reviews"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginLeft="3dp"
+                    android:textSize="15sp" />
+
+                <!-- Single Review Block -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:background="#1E1E1E"
+                    android:layout_marginBottom="10dp"
+                    android:elevation="2dp"
+                    android:backgroundTint="#1E1E1E">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="★ ★ ★ ★ ☆"
+                        android:textColor="#FFD700"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Amazing game! The visuals are stunning and the combat is super fluid. Totally worth the price."
+                        android:textColor="#CCCCCC"
+                        android:textSize="14sp"
+                        android:layout_marginTop="4dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="- user123"
+                        android:textColor="#888888"
+                        android:textSize="12sp"
+                        android:layout_marginTop="6dp" />
+                </LinearLayout>
+
+                <!-- Review 2 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:background="#1E1E1E"
+                    android:elevation="2dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="★ ★ ★ ★ ★"
+                        android:textColor="#FFD700"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Masterpiece. It's like playing a movie. Can't wait for the sequel!"
+                        android:textColor="#CCCCCC"
+                        android:textSize="14sp"
+                        android:layout_marginTop="4dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="- dragonblade77"
+                        android:textColor="#888888"
+                        android:textSize="12sp"
+                        android:layout_marginTop="6dp" />
+                </LinearLayout>
+
+                <!-- Review 3 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:background="#1E1E1E"
+                    android:elevation="2dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="★ ★ ★ ☆ ☆"
+                        android:textColor="#FFD700"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Looks great but performance needs work on mid-range PCs. Still enjoyed it though!"
+                        android:textColor="#CCCCCC"
+                        android:textSize="14sp"
+                        android:layout_marginTop="4dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="- pixelwitch"
+                        android:textColor="#888888"
+                        android:textSize="12sp"
+                        android:layout_marginTop="6dp" />
+                </LinearLayout>
+
+                <!-- Review 4 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:background="#1E1E1E"
+                    android:elevation="2dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="★ ★ ★ ★ ☆"
+                        android:textColor="#FFD700"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="A solid experience. Great story and character design. Minor bugs here and there."
+                        android:textColor="#CCCCCC"
+                        android:textSize="14sp"
+                        android:layout_marginTop="4dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="- elena98"
+                        android:textColor="#888888"
+                        android:textSize="12sp"
+                        android:layout_marginTop="6dp" />
+                </LinearLayout>
+
+                <!-- Review 5 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:background="#1E1E1E"
+                    android:elevation="2dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="★ ★ ★ ★ ★"
+                        android:textColor="#FFD700"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="A true return to horror. The village is haunting, and Lady Dimitrescu stole the show!"
+                        android:textColor="#CCCCCC"
+                        android:textSize="14sp"
+                        android:layout_marginTop="4dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="- biohazardfan88"
+                        android:textColor="#888888"
+                        android:textSize="12sp"
+                        android:layout_marginTop="6dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Lower Layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:gravity="center_vertical"
+        android:weightSum="3">
+
+        <ImageButton
+            android:id="@+id/like_button"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="0.5"
+            android:background="@android:color/transparent"
+            android:src="@drawable/like"
+            android:contentDescription="Like" />
+
+        <ImageButton
+            android:id="@+id/wish_button"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="3dp"
+            android:layout_weight="0.5"
+            android:background="@android:color/transparent"
+            android:src="@drawable/bookmark"
+            android:contentDescription="Wish" />
+
+        <Button
+            android:id="@+id/addtocart"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="2"
+            android:backgroundTint="#A6E964"
+            android:text="Add to Cart"
+            android:textColor="#FFFF"
+            app:cornerRadius="10dp" />
+    </LinearLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

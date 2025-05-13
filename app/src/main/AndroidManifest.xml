@@ -29,7 +29,13 @@
         <activity android:name=".CreateAccount"/>
         <activity android:name=".MainActivity" />
         <activity android:name=".ProfilePage"/>
-        <activity android:name=".GameView"/>
+        <activity android:name=".GameView1"/>
+        <activity android:name=".GameView2"/>
+        <activity android:name=".GameView3"/>
+        <activity android:name=".GameView4"/>
+        <activity android:name=".GameView5"/>
+        <activity android:name=".GameView6"/>
+        <activity android:name=".GameView7"/>
 
     </application>
 
