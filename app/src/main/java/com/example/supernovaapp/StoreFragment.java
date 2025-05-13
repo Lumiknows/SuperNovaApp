@@ -88,7 +88,7 @@ public class StoreFragment extends Fragment {
         });
 
         // Items for sale carousel
-        sale_imageList.add(R.drawable.phantomblade);
+        sale_imageList.add(R.drawable.ph0);
         sale_imageList.add(R.drawable.bloodborne);
         sale_imageList.add(R.drawable.crimsondesert);
         sale_imageList.add(R.drawable.blackwukong);
