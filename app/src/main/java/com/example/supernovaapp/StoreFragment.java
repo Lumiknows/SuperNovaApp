@@ -34,21 +34,10 @@ public class StoreFragment extends Fragment {
     public StoreFragment() {
         // Required empty public constructor
     }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment StoreFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static StoreFragment newInstance(String param1, String param2) {
+    public static StoreFragment newInstance(int userId) {
         StoreFragment fragment = new StoreFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putInt("userId", userId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -78,9 +67,12 @@ public class StoreFragment extends Fragment {
         List<Integer> sale_imageList = new ArrayList<>();
         List<Integer> rec_imageList = new ArrayList<>();
 
+        // Get username from login activity
+        int userId = getArguments().getInt("userId");
+
         // Carousel Adapters
-        CarouselAdapter saleCarouselAdapter = new CarouselAdapter(sale_imageList, getContext());
-        CarouselAdapter recCarouselAdapter = new CarouselAdapter(rec_imageList, getContext());
+        CarouselAdapter saleCarouselAdapter = new CarouselAdapter(sale_imageList, getContext(), userId);
+        CarouselAdapter recCarouselAdapter = new CarouselAdapter(rec_imageList, getContext(), userId);
 
         profileBtn.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), ProfilePage.class);
@@ -88,18 +80,18 @@ public class StoreFragment extends Fragment {
         });
 
         // Items for sale carousel
-        sale_imageList.add(R.drawable.ph0);
-        sale_imageList.add(R.drawable.bloodborne);
-        sale_imageList.add(R.drawable.crimsondesert);
+        sale_imageList.add(R.drawable.phantomblade);
+        sale_imageList.add(R.drawable.bloodborne2);
+        sale_imageList.add(R.drawable.crimson);
         sale_imageList.add(R.drawable.blackwukong);
-        sale_imageList.add(R.drawable.coolgame);
+        sale_imageList.add(R.drawable.ready_or_not);
 
         // Items for recommended carousel
-        rec_imageList.add(R.drawable.coolgame);
-        rec_imageList.add(R.drawable.crimsondesert);
+        rec_imageList.add(R.drawable.ready_or_not);
+        rec_imageList.add(R.drawable.crimson);
         rec_imageList.add(R.drawable.blackwukong);
         rec_imageList.add(R.drawable.phantomblade);
-        rec_imageList.add(R.drawable.bloodborne);
+        rec_imageList.add(R.drawable.bloodborne2);
 
         sale_viewPager2.setAdapter(saleCarouselAdapter);
         rec_viewPager2.setAdapter(recCarouselAdapter);
