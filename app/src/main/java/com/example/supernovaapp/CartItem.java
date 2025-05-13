@@ -1,15 +1,16 @@
 package com.example.supernovaapp;
 
 public class CartItem {
-
-    private String title;
-    private String studio;
-    private String price;
-    private String discount;
-    private int imageResource;
+    int id;
+    String title;
+    String studio;
+    String price;
+    String discount;
+    int imageResource;
 
     // Constructor
-    public CartItem(String title, String studio, String price, String discount, int imageResource) {
+    public CartItem(int id, String title, String studio, String price, String discount, int imageResource) {
+        this.id = id;
         this.title = title;
         this.studio = studio;
         this.price = price;
@@ -37,6 +38,7 @@ public class CartItem {
     public int getImageResource() {
         return imageResource;
     }
+    public int getId() {return id;}
 
     // Setters (if needed)
     public void setTitle(String title) {
@@ -58,4 +60,5 @@ public class CartItem {
     public void setImageResource(int imageResource) {
         this.imageResource = imageResource;
     }
+    public void setId(int id) {this.id = id;}
 }

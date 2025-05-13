@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        int userId = getIntent().getIntExtra("userId", -1);
+
         frameLayout = (FrameLayout) findViewById(R.id.framelayout);
         tabLayout = (TabLayout) findViewById(R.id.bottom_tab_layout);
 
@@ -32,9 +34,8 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("Cart").setIcon(R.drawable.cart));
         tabLayout.addTab(tabLayout.newTab().setText("News").setIcon(R.drawable.notif_bell));
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new StoreFragment())
-                .addToBackStack(null)
-                .commit();
+        getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.framelayout, StoreFragment.newInstance(userId)).addToBackStack(null).commit();
 
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -43,13 +44,13 @@ public class MainActivity extends AppCompatActivity {
 
                 switch(tab.getPosition()) {
                     case 0:
-                        fragment = new StoreFragment();
+                        fragment = StoreFragment.newInstance(userId);
                         break;
                     case 1:
                         fragment = new LibraryFragment();
                         break;
                     case 2:
-                        fragment = new CartFragment();
+                        fragment = CartFragment.newInstance(userId);
                         break;
                     case 3:
                         fragment = new NotifFragment();

@@ -3,9 +3,12 @@ package com.example.supernovaapp;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,13 +29,15 @@ public class GameView4 extends AppCompatActivity {
     private boolean isLiked = false;
     private boolean isWished = false;
     private boolean isAddedToCart = false;
-
     private MediaPlayer mediaPlayer;
+    private DBHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_view4);
+
+        db = new DBHelper(this);
 
         videoView = findViewById(R.id.video_view);
         Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.phantomblade);
@@ -104,15 +109,28 @@ public class GameView4 extends AppCompatActivity {
         // Add to Cart Toggle
         addToCartBtn.setOnClickListener(v -> {
             if (!isAddedToCart) {
-                // Remove text and set the check icon
-                addToCartBtn.setText("Added to Cart"); // Remove text
-                addToCartBtn.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0); // Clear any previous icon
+                String title = ((TextView) findViewById(R.id.title)).getText().toString();
+                String studio = ((TextView) findViewById(R.id.studio)).getText().toString();
+                String price = ((TextView) findViewById(R.id.price)).getText().toString();
+                String discount = "-";
+                int imageResId = R.drawable.ready_or_not;
+
+                int userId = getIntent().getIntExtra("userId", -1);
+                Log.e("USER_ID_CHECK", "userId: " + userId);
+
+                boolean success = db.insertToCart(userId, title, studio, price, discount, imageResId);
+                if (success) {
+                    Toast.makeText(this, "Item added to cart", Toast.LENGTH_SHORT).show();
+                    addToCartBtn.setText("Added to Cart"); // Remove text
+                    addToCartBtn.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0); // Clear any previous icon
+                }
+                else {
+                    Toast.makeText(this, "Failed to add item", Toast.LENGTH_SHORT).show();
+                }
             } else {
-                // Reset to default state with text
-                addToCartBtn.setText("Add to Cart");
-                addToCartBtn.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0); // Clear icon
+                Toast.makeText(this, "Item already in cart", Toast.LENGTH_SHORT).show();
             }
-            isAddedToCart = !isAddedToCart;
+            isAddedToCart = true;
         });
 
 
