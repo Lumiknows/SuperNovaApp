@@ -43,8 +43,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         holder.gameDiscount.setText(item.getDiscount());
         holder.gameImage.setImageResource(item.getImageResource());
 
+        // To prevent crashing when removing all items in the cart
         holder.removeFromCartBtn.setOnClickListener(v -> {
-            onRemoveListener.onRemove(position);
+            int adapterPosition = holder.getAdapterPosition();
+            if (adapterPosition != RecyclerView.NO_POSITION) {
+                onRemoveListener.onRemove(adapterPosition);
+            }
         });
     }
 
