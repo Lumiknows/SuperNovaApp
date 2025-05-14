@@ -36,6 +36,14 @@ public class DBHelper extends SQLiteOpenHelper {
                 "discount TEXT, " +
                 "imageResId INTEGER, " +
                 "FOREIGN KEY(user_id) REFERENCES users(id))");
+        // ✅ Create games table
+        db.execSQL("CREATE TABLE games (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "title TEXT, " +
+                "studio TEXT, " +
+                "price TEXT, " +
+                "discount TEXT, " +
+                "imageResId INTEGER)");
     }
 
     // USER
