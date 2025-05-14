@@ -22,15 +22,26 @@ android:background="#0D0D0D">
         <!-- App Title -->
         <TextView
             android:id="@+id/logo_profile"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="SUPERNOVA"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
-            android:layout_marginStart="120dp"
             android:layout_marginTop="5dp"
-            android:layout_toEndOf="@+id/back_button"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
             android:layout_alignTop="@+id/back_button"/>
+
+        <ImageView
+            android:id="@+id/profile_menu"
+            android:layout_width="30dp"
+            android:layout_height="35dp"
+            android:src="@drawable/profile_menu"
+            android:layout_alignTop="@id/logo_profile"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="-8dp"/>
 
         <!-- Banner Image -->
         <ImageButton
