@@ -17,14 +17,6 @@
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:paddingBottom="16dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="10:30 AM"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp" />
-
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

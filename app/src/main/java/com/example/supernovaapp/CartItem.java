@@ -38,9 +38,21 @@ public class CartItem {
     public int getImageResource() {
         return imageResource;
     }
-    public int getId() {return id;}
 
-    // Setters (if needed)
+    public int getId() {
+        return id;
+    }
+
+    // Add this to use for price calculations
+    public double getPriceAsDouble() {
+        try {
+            return Double.parseDouble(price.replaceAll("[^\\d.]", "")); // Remove currency symbols if any
+        } catch (NumberFormatException e) {
+            return 0.0;
+        }
+    }
+
+    // Setters
     public void setTitle(String title) {
         this.title = title;
     }
@@ -60,5 +72,8 @@ public class CartItem {
     public void setImageResource(int imageResource) {
         this.imageResource = imageResource;
     }
-    public void setId(int id) {this.id = id;}
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

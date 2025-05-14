@@ -18,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#0D0D0D"
+        android:layout_marginBottom="10dp"
         app:tabGravity="fill"
         app:tabMode="fixed"
         app:tabIndicatorColor="@color/white"
