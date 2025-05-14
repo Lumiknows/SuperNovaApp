@@ -98,7 +98,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
-                    android:text="$5.99"
+                    android:text="₱5.99"
                     android:textColor="#A6E964"
                     android:textSize="18sp" />
 
