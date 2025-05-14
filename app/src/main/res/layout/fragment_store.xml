@@ -169,6 +169,7 @@
                 android:showDividers="middle">
 
                 <ImageView
+                    android:id="@+id/eldenring"
                     android:layout_width="250dp"
                     android:layout_height="100dp"
                     android:src="@drawable/eldenring"
@@ -222,6 +223,7 @@
                 android:showDividers="middle">
 
                 <ImageView
+                    android:id="@+id/readyornot"
                     android:layout_width="250dp"
                     android:layout_height="100dp"
                     android:src="@drawable/ready_or_not"
@@ -434,6 +436,7 @@
                 android:showDividers="middle">
 
                 <ImageView
+                    android:id="@+id/blackwukong"
                     android:layout_width="250dp"
                     android:layout_height="100dp"
                     android:src="@drawable/blackwukong"
@@ -591,6 +594,7 @@
                 android:showDividers="middle">
 
                 <ImageView
+                    android:id="@+id/crimson"
                     android:layout_width="250dp"
                     android:layout_height="100dp"
                     android:src="@drawable/crimson"
