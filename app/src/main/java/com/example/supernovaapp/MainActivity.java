@@ -47,13 +47,13 @@ public class MainActivity extends AppCompatActivity {
                         fragment = StoreFragment.newInstance(userId);
                         break;
                     case 1:
-                        fragment = new LibraryFragment();
+                        fragment = LibraryFragment.newInstance(userId);
                         break;
                     case 2:
                         fragment = CartFragment.newInstance(userId);
                         break;
                     case 3:
-                        fragment = new NotifFragment();
+                        fragment = NotifFragment.newInstance(userId);
                         break;
                 }
 
