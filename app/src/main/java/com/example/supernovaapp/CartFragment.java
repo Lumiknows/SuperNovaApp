@@ -33,6 +33,8 @@ public class CartFragment extends Fragment {
     private TextView checkoutTotal;
     private Button confirmCheckout;
     private Button cancelCheckout;
+    private DBHelper db;
+    private int userId;
 
     // ✅ NEW: Checkout game list container
     private LinearLayout checkoutGameList;
@@ -72,8 +74,8 @@ public class CartFragment extends Fragment {
         checkoutGameList = rootView.findViewById(R.id.checkoutGameList);
 
         cartItemList = new ArrayList<>();
-        DBHelper db = new DBHelper(getContext());
-        int userId = getArguments().getInt("userId", -1);
+        db = new DBHelper(getContext());
+        userId = getArguments().getInt("userId", -1);
         Log.e("USER_ID_CHECK", "userId: " + userId);
         cartItemList = db.getCartItemByUserId(userId);
 
@@ -136,8 +138,26 @@ public class CartFragment extends Fragment {
             Toast.makeText(getContext(), "Purchase confirmed!", Toast.LENGTH_SHORT).show();
             checkoutOverlay.setVisibility(View.GONE);
 
+            db = new DBHelper(getContext());
+            userId = getArguments().getInt("userId", -1);
+            String hrs = "0.0 hrs";
+
             for (CartItem item : cartItemList) {
-                db.deleteCartItemById(item.getId());
+                boolean addedToLibrary = db.insertToLibrary(userId, item.title, item.studio, hrs, item.getImageResource());
+
+                if (addedToLibrary) {
+                    boolean deletedFromCart = db.deleteCartItemById(item.getId());
+
+                    if (deletedFromCart) {
+                        Toast.makeText(getContext(), item.getTitle() + " added to library", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Toast.makeText(getContext(), "Failed to remove " + item.getTitle() + " from cart", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else {
+                    Toast.makeText(getContext(), "Failed to add " + item.getTitle() + " to library", Toast.LENGTH_SHORT).show();
+                }
             }
 
             cartItemList.clear();
