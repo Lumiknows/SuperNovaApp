@@ -13,29 +13,35 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SuperNovaApp"
         tools:targetApi="31">
+
         <!-- Splash is the launcher -->
         <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- Login screen -->
-        <activity
-            android:name=".LoginActivity"
-            android:exported="true" />
-        <activity android:name=".CreateAccount"/>
+        </activity>
+
+        <activity android:name=".LoginActivity" android:exported="true" />
+        <activity android:name=".CreateAccount" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".ProfilePage"/>
-        <activity android:name=".GameView1"/>
-        <activity android:name=".GameView2"/>
-        <activity android:name=".GameView3"/>
-        <activity android:name=".GameView4"/>
-        <activity android:name=".GameView5"/>
-        <activity android:name=".GameView6"/>
-        <activity android:name=".GameView7"/>
+        <activity android:name=".ProfilePage" />
+        <activity android:name=".GameView1" />
+        <activity android:name=".GameView2" />
+        <activity android:name=".GameView3" />
+        <activity android:name=".GameView4" />
+        <activity android:name=".GameView5" />
+        <activity android:name=".GameView6" />
+        <activity android:name=".GameView7" />
+        <activity android:name=".Review" />
+
+        <!-- Lottie-based full-screen download popup -->
+        <activity
+            android:name=".DownloadPopupActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            android:exported="false" />
 
     </application>
 

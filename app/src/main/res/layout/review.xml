@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#111111"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/reviewGameImage"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/reviewGameTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Game Title"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/reviewGameStudio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Studio Name"
+            android:textSize="14sp"
+            android:textColor="#BBBBBB"
+            android:layout_marginTop="4dp" />
+
+        <TextView
+            android:id="@+id/reviewGameHrs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10.2 hrs played"
+            android:textSize="14sp"
+            android:textColor="#CCCCCC"
+            android:layout_marginTop="4dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#333333"
+            android:layout_marginVertical="16dp" />
+
+        <TextView
+            android:id="@+id/reviewerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="JamezSunz:"
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+        <!-- TextView to display the review after it is submitted -->
+        <TextView
+            android:id="@+id/submittedReview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#DDDDDD"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:visibility="gone" /> <!-- Initially hidden -->
+
+        <EditText
+            android:id="@+id/reviewText"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:textSize="14sp"
+            android:textColor="#DDDDDD"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:hint="     Write your review here"
+            android:textColorHint="#FFFF"
+            android:background="#222222"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <Button
+                android:id="@+id/cancel"
+                android:layout_width="150dp"
+                android:layout_height="35dp"
+                android:backgroundTint="#B71C1C"
+                android:text="Cancel"
+                android:layout_marginStart="5dp"
+                android:textColor="#FFFFFF"
+                android:textSize="10sp"
+                app:cornerRadius="3dp"/>
+
+            <Button
+                android:id="@+id/reviewed"
+                android:layout_width="150dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="67dp"
+                android:backgroundTint="#A6E964"
+                android:text="Review"
+                android:textColor="#FFFFFF"
+                android:textSize="10sp"
+                app:cornerRadius="3dp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
