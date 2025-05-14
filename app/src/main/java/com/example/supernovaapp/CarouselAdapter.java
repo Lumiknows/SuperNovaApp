@@ -67,10 +67,22 @@ public class CarouselAdapter extends RecyclerView.Adapter<CarouselAdapter.Carous
                 Log.e("USER_ID_CHECK", "userId: " + userId);
                 context.startActivity(intent);
             }
+            else if (imageResId == R.drawable.eldenring) {
+                Intent intent = new Intent(context, GameView2.class);
+                intent.putExtra("userId", userId);
+                context.startActivity(intent);
+            }
+            else if (imageResId == R.drawable.residentevil) {
+                Intent intent = new Intent(context, GameView3.class);
+                intent.putExtra("userId", userId);
+                context.startActivity(intent);
+            }
             else {
                 Toast.makeText(context, "Game not found.", Toast.LENGTH_SHORT).show();
             }
         });
+
+
     }
 
     @Override

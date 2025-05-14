@@ -28,7 +28,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // Create cart table
         db.execSQL("CREATE TABLE cart (" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "cartId INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "user_id INTEGER, " +
                 "title TEXT, " +
                 "studio TEXT, " +
@@ -36,14 +36,25 @@ public class DBHelper extends SQLiteOpenHelper {
                 "discount TEXT, " +
                 "imageResId INTEGER, " +
                 "FOREIGN KEY(user_id) REFERENCES users(id))");
+
         // ✅ Create games table
         db.execSQL("CREATE TABLE games (" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "game_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "title TEXT, " +
                 "studio TEXT, " +
                 "price TEXT, " +
                 "discount TEXT, " +
                 "imageResId INTEGER)");
+
+        // Create library table
+        db.execSQL("CREATE TABLE library(" +
+                "library_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "userId INTEGER, " +
+                "lib_title TEXT," +
+                "lib_studio TEXT, " +
+                "hrs TEXT, " +
+                "lib_imageResId INTEGER, " +
+                "FOREIGN KEY(userId) REFERENCES users(id))");
     }
 
     // USER
@@ -101,7 +112,7 @@ public class DBHelper extends SQLiteOpenHelper {
         // Handle empty cart gracefully by checking if the cursor contains data
         if (cursor != null && cursor.moveToFirst()) {
             do {
-                int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+                int id = cursor.getInt(cursor.getColumnIndexOrThrow("cartId"));
                 String title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
                 String studio = cursor.getString(cursor.getColumnIndexOrThrow("studio"));
                 String price = cursor.getString(cursor.getColumnIndexOrThrow("price"));
@@ -118,8 +129,41 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public boolean deleteCartItemById(int cartItemId) {
         SQLiteDatabase db = this.getWritableDatabase();
-        int rowsDeleted = db.delete("cart", "id = ?", new String[]{String.valueOf(cartItemId)});
+        int rowsDeleted = db.delete("cart", "cartId = ?", new String[]{String.valueOf(cartItemId)});
         return rowsDeleted > 0;
+    }
+
+    // Library
+    public boolean insertToLibrary(int userId, String title, String studio, String hrs, int imageResId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("userId", userId);
+        cv.put("lib_title", title);
+        cv.put("lib_studio", studio);
+        cv.put("hrs", hrs);
+        cv.put("lib_imageResId", imageResId);
+        long result = db.insert("library", null, cv);
+        return result != -1;
+    }
+
+    public List<LibraryItem> getLibraryByUserId(int userId) {
+        List<LibraryItem> librayList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM library WHERE userId = ?", new String[]{String.valueOf(userId)});
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(cursor.getColumnIndexOrThrow("library_id"));
+                String title = cursor.getString(cursor.getColumnIndexOrThrow("lib_title"));
+                String studio = cursor.getString(cursor.getColumnIndexOrThrow("lib_studio"));
+                String hrs = cursor.getString(cursor.getColumnIndexOrThrow("hrs"));
+                int imageResId = cursor.getInt(cursor.getColumnIndexOrThrow("lib_imageResId"));
+
+                librayList.add(new LibraryItem(id, title, studio, hrs, imageResId));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return librayList;
     }
 
     @Override
@@ -127,6 +171,7 @@ public class DBHelper extends SQLiteOpenHelper {
         // Drop existing tables and recreate them if version is upgraded
         db.execSQL("DROP TABLE IF EXISTS users");
         db.execSQL("DROP TABLE IF EXISTS cart");
+        db.execSQL("DROP TABLE IF EXISTS library");
         onCreate(db);
     }
 }

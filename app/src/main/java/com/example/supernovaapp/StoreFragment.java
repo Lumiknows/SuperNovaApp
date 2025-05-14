@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,10 +83,10 @@ public class StoreFragment extends Fragment {
 
         // Items for sale carousel
         sale_imageList.add(R.drawable.eldenring);
-        sale_imageList.add(R.drawable.gta6);
+        sale_imageList.add(R.drawable.ready_or_not);
         sale_imageList.add(R.drawable.metro);
         sale_imageList.add(R.drawable.crimson);
-        sale_imageList.add(R.drawable.ready_or_not);
+        sale_imageList.add(R.drawable.gta6);
         sale_imageList.add(R.drawable.lethal);
         sale_imageList.add(R.drawable.mortal);
         sale_imageList.add(R.drawable.bloodborne2);
@@ -92,15 +94,17 @@ public class StoreFragment extends Fragment {
         // Items for recommended carousel
         rec_imageList.add(R.drawable.blackwukong);
         rec_imageList.add(R.drawable.helltaker);
-        rec_imageList.add(R.drawable.repo);
+        rec_imageList.add(R.drawable.residentevil);
         rec_imageList.add(R.drawable.phantomblade);
         rec_imageList.add(R.drawable.ark2);
         rec_imageList.add(R.drawable.subverse);
         rec_imageList.add(R.drawable.dragon2);
         rec_imageList.add(R.drawable.ghost);
+        rec_imageList.add(R.drawable.repo);
 
         sale_viewPager2.setAdapter(saleCarouselAdapter);
         rec_viewPager2.setAdapter(recCarouselAdapter);
+
         return view;
     }
 }
