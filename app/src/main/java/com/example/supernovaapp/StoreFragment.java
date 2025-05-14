@@ -80,18 +80,24 @@ public class StoreFragment extends Fragment {
         });
 
         // Items for sale carousel
-        sale_imageList.add(R.drawable.phantomblade);
-        sale_imageList.add(R.drawable.bloodborne2);
+        sale_imageList.add(R.drawable.eldenring);
+        sale_imageList.add(R.drawable.gta6);
+        sale_imageList.add(R.drawable.metro);
         sale_imageList.add(R.drawable.crimson);
-        sale_imageList.add(R.drawable.blackwukong);
         sale_imageList.add(R.drawable.ready_or_not);
+        sale_imageList.add(R.drawable.lethal);
+        sale_imageList.add(R.drawable.mortal);
+        sale_imageList.add(R.drawable.bloodborne2);
 
         // Items for recommended carousel
-        rec_imageList.add(R.drawable.ready_or_not);
-        rec_imageList.add(R.drawable.crimson);
         rec_imageList.add(R.drawable.blackwukong);
+        rec_imageList.add(R.drawable.helltaker);
+        rec_imageList.add(R.drawable.repo);
         rec_imageList.add(R.drawable.phantomblade);
-        rec_imageList.add(R.drawable.bloodborne2);
+        rec_imageList.add(R.drawable.ark2);
+        rec_imageList.add(R.drawable.subverse);
+        rec_imageList.add(R.drawable.dragon2);
+        rec_imageList.add(R.drawable.ghost);
 
         sale_viewPager2.setAdapter(saleCarouselAdapter);
         rec_viewPager2.setAdapter(recCarouselAdapter);
