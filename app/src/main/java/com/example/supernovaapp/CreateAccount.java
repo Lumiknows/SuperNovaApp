@@ -45,15 +45,11 @@ public class CreateAccount extends AppCompatActivity {
             } else if (!confirmPass.equals(newPass)) {
                 Toast.makeText(this, "Passwords do not match.", Toast.LENGTH_SHORT).show();
             } else {
-                boolean success = db.insertUser(newUser, newPass);
-                if (success) {
-                    Toast.makeText(this, "Account created! Please log in.", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(CreateAccount.this, LoginActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    Toast.makeText(this, "Signup failed. Try again.", Toast.LENGTH_SHORT).show();
-                }
+                db.insertUser(newUser, newPass);
+                Toast.makeText(this, "Account created! Please log in.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(CreateAccount.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
