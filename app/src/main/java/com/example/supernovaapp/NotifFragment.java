@@ -15,6 +15,14 @@ public class NotifFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public static NotifFragment newInstance(int userId) {
+        NotifFragment fragment = new NotifFragment();
+        Bundle args = new Bundle();
+        args.putInt("userId", userId);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
