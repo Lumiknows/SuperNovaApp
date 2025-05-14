@@ -126,6 +126,17 @@
             android:layout_toRightOf="@+id/filter_library" />
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/emptyLibraryMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your library is empty"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_marginVertical="150dp"
+        android:visibility="gone"/>
+
     <!-- RecyclerView for Library -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/libraryRecyclerView"
