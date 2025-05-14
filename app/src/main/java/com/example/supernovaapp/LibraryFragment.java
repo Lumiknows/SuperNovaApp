@@ -1,9 +1,11 @@
 package com.example.supernovaapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -27,6 +29,13 @@ public class LibraryFragment extends Fragment {
 
         libraryRecyclerView = rootView.findViewById(R.id.libraryRecyclerView);
         libraryRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        ImageButton profileBtn = rootView.findViewById(R.id.profile);
+
+        profileBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), ProfilePage.class);
+            startActivity(intent);
+        });
 
         // Sample data
         libraryItems = new ArrayList<>();

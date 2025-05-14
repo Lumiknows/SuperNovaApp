@@ -1,5 +1,6 @@
 package com.example.supernovaapp;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -146,6 +148,13 @@ public class CartFragment extends Fragment {
         // Cancel Checkout
         cancelCheckout.setOnClickListener(v -> {
             checkoutOverlay.setVisibility(View.GONE);
+        });
+
+        ImageButton profileBtn = rootView.findViewById(R.id.profile);
+
+        profileBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), ProfilePage.class);
+            startActivity(intent);
         });
 
         return rootView;
