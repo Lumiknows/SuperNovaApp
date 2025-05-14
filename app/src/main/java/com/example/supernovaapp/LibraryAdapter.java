@@ -62,7 +62,7 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
         String savedReview = sharedPreferences.getString(reviewKey, null);
 
         if (savedReview != null) {
-            holder.reviewBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#2196F3")));
+            holder.reviewBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#A6E964")));
             holder.reviewBtn.setText("Reviewed");
         } else {
             holder.reviewBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#252525")));
@@ -74,7 +74,7 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
         boolean isDownloaded = sharedPreferences.getBoolean(downloadKey, false);
 
         if (isDownloaded) {
-            holder.downloadBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4CAF50")));
+            holder.downloadBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#A6E964")));
             holder.downloadBtn.setImageResource(R.drawable.ic_check); // ✅ Your downloaded icon
             holder.downloadBtn.setEnabled(false); // Disable download button after download
         } else {

@@ -1,148 +1,228 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#111111"
-    android:orientation="vertical"
-    android:padding="16dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#111111">
 
-    <!-- Header -->
+    <!-- Main content -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="85dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:paddingBottom="16dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="SUPERNOVA"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textAlignment="center"/>
+
+            <ImageButton
+                android:id="@+id/profile"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="8dp"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                android:background="@drawable/circle_mask"
+                android:clipToOutline="true"
+                android:src="@drawable/profileavatar"
+                android:contentDescription="@string/profileDescription" />
+        </LinearLayout>
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GodRick's Cart"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:paddingBottom="8dp" />
+
+        <!-- Filters -->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/sort_recent_cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sort by:"
+                android:textColor="#CCCCCC"
+                android:textSize="12dp"
+                android:paddingEnd="4dp"
+                android:layout_alignParentStart="true"/>
+
+            <TextView
+                android:id="@+id/recent_cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recently Added"
+                android:textSize="12dp"
+                android:textColor="#FFFFFF"
+                android:layout_toRightOf="@id/sort_recent_cart"/>
+
+            <ImageButton
+                android:id="@+id/recentdown_cart"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/down"
+                android:background="@android:color/transparent"
+                android:layout_toRightOf="@+id/recent_cart"/>
+
+            <TextView
+                android:id="@+id/sort_type_cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sort by:"
+                android:textColor="#CCCCCC"
+                android:textSize="12dp"
+                android:layout_marginLeft="10dp"
+                android:paddingEnd="4dp"
+                android:layout_toRightOf="@id/recentdown_cart"/>
+
+            <TextView
+                android:id="@+id/type_cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="All Types"
+                android:textSize="12dp"
+                android:textColor="#FFFFFF"
+                android:layout_toRightOf="@id/sort_type_cart"/>
+
+            <ImageButton
+                android:id="@+id/type_down_cart"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/down"
+                android:background="@android:color/transparent"
+                android:layout_toRightOf="@id/type_cart"/>
+
+            <TextView
+                android:id="@+id/filter_cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Filters"
+                android:textSize="12dp"
+                android:layout_marginLeft="10dp"
+                android:textColor="#FFFFFF"
+                android:paddingEnd="4dp"
+                android:layout_toRightOf="@id/type_down_cart"/>
+
+            <ImageButton
+                android:id="@+id/filterdown_cart"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/down"
+                android:background="@android:color/transparent"
+                android:layout_toRightOf="@id/filter_cart"/>
+        </RelativeLayout>
 
         <TextView
-            android:layout_width="0dp"
+            android:id="@+id/emptyCartMessage"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="SUPERNOVA"
+            android:text="Your cart is empty"
             android:textColor="#FFFFFF"
-            android:textStyle="bold"
             android:textSize="16sp"
-            android:textAlignment="center"/>
+            android:gravity="center"
+            android:visibility="gone" />
 
-        <ImageButton
-            android:id="@+id/profile"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="8dp"
-            android:scaleType="centerCrop"
-            android:adjustViewBounds="true"
-            android:background="@drawable/circle_mask"
-            android:clipToOutline="true"
-            android:src="@drawable/profileavatar"
-            android:contentDescription="@string/profileDescription" />
+        <!-- RecyclerView for cart items -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cartRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingTop="8dp"
+            android:clipToPadding="false" />
     </LinearLayout>
 
-    <!-- Title -->
-    <TextView
+    <!-- Buy Button -->
+    <Button
+        android:id="@+id/buyButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="GodRick's Cart"
+        android:text="Buy"
         android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        android:paddingBottom="8dp" />
+        android:backgroundTint="#A6E964"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:enabled="false"
+        app:cornerRadius="3dp" />
 
-    <!-- Filters -->
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp">
-
-        <TextView
-            android:id="@+id/sort_recent_cart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sort by:"
-            android:textColor="#CCCCCC"
-            android:textSize="12dp"
-            android:paddingEnd="4dp"
-            android:layout_alignParentStart="true"/>
-
-        <TextView
-            android:id="@+id/recent_cart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Recently Added"
-            android:textSize="12dp"
-            android:textColor="#FFFFFF"
-            android:layout_toRightOf="@id/sort_recent_cart"/>
-
-        <ImageButton
-            android:id="@+id/recentdown_cart"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/down"
-            android:background="@android:color/transparent"
-            android:layout_toRightOf="@+id/recent_cart"/>
-
-        <TextView
-            android:id="@+id/sort_type_cart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sort by:"
-            android:textColor="#CCCCCC"
-            android:textSize="12dp"
-            android:layout_marginLeft="10dp"
-            android:paddingEnd="4dp"
-            android:layout_toRightOf="@id/recentdown_cart"/>
-
-        <TextView
-            android:id="@+id/type_cart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="All Types"
-            android:textSize="12dp"
-            android:textColor="#FFFFFF"
-            android:layout_toRightOf="@id/sort_type_cart"/>
-
-        <ImageButton
-            android:id="@+id/type_down_cart"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/down"
-            android:background="@android:color/transparent"
-            android:layout_toRightOf="@id/type_cart"/>
-
-        <TextView
-            android:id="@+id/filter_cart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Filters"
-            android:textSize="12dp"
-            android:layout_marginLeft="10dp"
-            android:textColor="#FFFFFF"
-            android:paddingEnd="4dp"
-            android:layout_toRightOf="@id/type_down_cart"/>
-        <ImageButton
-            android:id="@+id/filterdown_cart"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/down"
-            android:background="@android:color/transparent"
-            android:layout_toRightOf="@id/filter_cart"/>
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/emptyCartMessage"
+    <!-- Checkout Overlay -->
+    <FrameLayout
+        android:id="@+id/checkoutOverlay"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Your cart is empty"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        android:gravity="center"
-        android:visibility="gone" />
+        android:layout_height="match_parent"
+        android:background="#AA000000"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"> <!-- Hide by default -->
 
-    <!-- RecyclerView for cart items -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/cartRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingTop="8dp"
-        android:clipToPadding="false" />
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:background="#000"
+            android:layout_gravity="center"
+            android:elevation="10dp"
+            android:gravity="center_horizontal">
+
+            <!-- Game titles and prices will be dynamically added here -->
+            <LinearLayout
+                android:id="@+id/checkoutGameList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="16dp">
+                <!-- Dynamically added content -->
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/checkoutTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total: ₱0.00"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:layout_marginBottom="16dp" />
+
+            <Button
+                android:id="@+id/confirmCheckout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Confirm Purchase"
+                android:backgroundTint="#A6E964"
+                android:textColor="#FFFFFF"
+                app:cornerRadius="3dp" />
+
+            <Button
+                android:id="@+id/cancelCheckout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:backgroundTint="#B71C1C"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="8dp"
+                app:cornerRadius="3dp" />
+        </LinearLayout>
+    </FrameLayout>
+</FrameLayout>
