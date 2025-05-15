@@ -22,7 +22,7 @@
             android:textColor="#FFFFFF"
             android:textStyle="bold"
             android:textSize="16sp"
-            android:textAlignment="center"/>
+            android:textAlignment="center" />
 
         <ImageButton
             android:id="@+id/profile"
@@ -38,11 +38,12 @@
             android:contentDescription="@string/profileDescription" />
     </LinearLayout>
 
-    <!-- Title -->
+    <!-- Title (Dynamic Username) -->
     <TextView
+        android:id="@+id/libraryTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="GodRick's Library"
+        android:text="Library"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:paddingBottom="8dp" />
@@ -61,7 +62,7 @@
             android:textColor="#CCCCCC"
             android:textSize="12dp"
             android:paddingEnd="4dp"
-            android:layout_alignParentStart="true"/>
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:id="@+id/recent_library"
@@ -70,7 +71,7 @@
             android:text="Recently Added"
             android:textSize="12dp"
             android:textColor="#FFFFFF"
-            android:layout_toRightOf="@id/sort_recent_library"/>
+            android:layout_toRightOf="@id/sort_recent_library" />
 
         <ImageButton
             android:id="@+id/recentdown_library"
@@ -78,7 +79,7 @@
             android:layout_height="20dp"
             android:src="@drawable/down"
             android:background="@android:color/transparent"
-            android:layout_toRightOf="@id/recent_library"/>
+            android:layout_toRightOf="@id/recent_library" />
 
         <TextView
             android:id="@+id/sort_type_library"
@@ -89,7 +90,7 @@
             android:textSize="12dp"
             android:layout_marginLeft="10dp"
             android:paddingEnd="4dp"
-            android:layout_toRightOf="@id/recentdown_library"/>
+            android:layout_toRightOf="@id/recentdown_library" />
 
         <TextView
             android:id="@+id/type_library"
@@ -98,7 +99,7 @@
             android:text="All Types"
             android:textSize="12dp"
             android:textColor="#FFFFFF"
-            android:layout_toRightOf="@id/sort_type_library"/>
+            android:layout_toRightOf="@id/sort_type_library" />
 
         <ImageButton
             android:id="@+id/type_down_library"
@@ -106,7 +107,7 @@
             android:layout_height="20dp"
             android:src="@drawable/down"
             android:background="@android:color/transparent"
-            android:layout_toRightOf="@id/type_library"/>
+            android:layout_toRightOf="@id/type_library" />
 
         <TextView
             android:id="@+id/filter_library"
@@ -116,7 +117,8 @@
             android:textSize="12dp"
             android:layout_marginLeft="10dp"
             android:textColor="#FFFFFF"
-            android:layout_toRightOf="@id/type_down_library"/>
+            android:layout_toRightOf="@id/type_down_library" />
+
         <ImageButton
             android:id="@+id/filterdown_library"
             android:layout_width="20dp"
@@ -135,7 +137,7 @@
         android:textSize="16sp"
         android:gravity="center"
         android:layout_marginVertical="150dp"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <!-- RecyclerView for Library -->
     <androidx.recyclerview.widget.RecyclerView

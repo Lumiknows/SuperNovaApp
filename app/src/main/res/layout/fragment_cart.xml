@@ -45,9 +45,10 @@
 
         <!-- Title -->
         <TextView
+            android:id="@+id/cartTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="GodRick's Cart"
+            android:text="Cart"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:paddingBottom="8dp" />
