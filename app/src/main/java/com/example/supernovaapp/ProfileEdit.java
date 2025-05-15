@@ -2,6 +2,7 @@ package com.example.supernovaapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -23,6 +24,7 @@ public class ProfileEdit extends AppCompatActivity {
     private ImageView profileMenu;
     private CircleImageView profilePhoto;
     private EditText username;
+    private EditText bioEditText;
     private Uri selectedImageUri = null;
 
     private DBHelper dbHelper;
@@ -37,42 +39,37 @@ public class ProfileEdit extends AppCompatActivity {
         profileMenu = findViewById(R.id.profile_menu);
         profilePhoto = findViewById(R.id.profile_photo);
         username = findViewById(R.id.username);
+        bioEditText = findViewById(R.id.bio_edit);
         Button cancelButton = findViewById(R.id.cancel_button);
         Button saveButton = findViewById(R.id.save_button);
 
-        username.setEnabled(true);
-        username.setFocusableInTouchMode(true);
-
         dbHelper = new DBHelper(this);
-
-        // Get userId passed from ProfilePage
         userId = getIntent().getIntExtra("userId", -1);
 
-        // Load current username from DB if userId valid
         if (userId != -1) {
             String currentUsername = dbHelper.getUsernameById(userId);
             if (currentUsername != null) {
                 username.setText(currentUsername);
             }
+
+            SharedPreferences prefs = getSharedPreferences("user_prefs", MODE_PRIVATE);
+            String savedBio = prefs.getString("user_bio_" + userId, "");
+            bioEditText.setText(savedBio);
         }
 
         cancelButton.setOnClickListener(v -> finish());
-
         backButton.setOnClickListener(v -> saveAndReturn());
-
         saveButton.setOnClickListener(v -> saveAndReturn());
 
         profileMenu.setOnClickListener(view -> {
             PopupMenu popupMenu = new PopupMenu(this, view);
             popupMenu.getMenuInflater().inflate(R.menu.profile_popup_menu, popupMenu.getMenu());
-
             popupMenu.setOnMenuItemClickListener(item -> {
-                int id = item.getItemId();
-                if (id == R.id.logout) {
+                if (item.getItemId() == R.id.logout) {
                     startActivity(new Intent(this, LoginActivity.class));
                     finish();
                     return true;
-                } else if (id == R.id.setting) {
+                } else if (item.getItemId() == R.id.setting) {
                     Toast.makeText(this, "Setting clicked", Toast.LENGTH_SHORT).show();
                     return true;
                 }
@@ -91,23 +88,30 @@ public class ProfileEdit extends AppCompatActivity {
 
     private void saveAndReturn() {
         String newUsername = username.getText().toString().trim();
+        String newBio = bioEditText.getText().toString().trim();
+
         if (newUsername.isEmpty()) {
             Toast.makeText(this, "Username cannot be empty", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Update username in DB
         if (userId != -1) {
             boolean updated = dbHelper.updateUsername(userId, newUsername);
             if (!updated) {
                 Toast.makeText(this, "Failed to update username", Toast.LENGTH_SHORT).show();
                 return;
             }
+
+            // Save bio to SharedPreferences
+            getSharedPreferences("user_prefs", MODE_PRIVATE)
+                    .edit()
+                    .putString("user_bio_" + userId, newBio)
+                    .apply();
         }
 
         Intent resultIntent = new Intent();
         resultIntent.putExtra("username", newUsername);
-
+        resultIntent.putExtra("bio", newBio);
         if (selectedImageUri != null) {
             resultIntent.putExtra("imageUri", selectedImageUri.toString());
         }
