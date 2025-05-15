@@ -1,6 +1,7 @@
 package com.example.supernovaapp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,22 +44,34 @@ public class NotifFragment extends Fragment {
         db = new DBHelper(getContext());
         username = db.getUsernameById(userId);
 
-        // Set click listeners
-        view.findViewById(R.id.wukong_layout).setOnClickListener(this::onClick);
-        view.findViewById(R.id.eldenring_layout).setOnClickListener(this::onClick);
-        view.findViewById(R.id.residentevil_layout).setOnClickListener(this::onClick);
+        // Set username in title
         TextView cartTitle = view.findViewById(R.id.notifTitle);
-        String username = db.getUsernameById(userId);
         cartTitle.setText(username + "'s Notification");
 
-        // Profile button click: pass userId and username like LibraryFragment
+        // Set up profile picture and click
         ImageButton profileBtn = view.findViewById(R.id.profile);
+
+        // ✅ Load profile picture like StoreFragment
+        String imageUriString = db.getProfilePicUriById(userId);
+        if (imageUriString != null && !imageUriString.isEmpty()) {
+            Uri imageUri = Uri.parse(imageUriString);
+            profileBtn.setImageURI(imageUri);
+        } else {
+            profileBtn.setImageResource(R.drawable.profileavatar);
+        }
+
+        // Profile click opens ProfilePage
         profileBtn.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), ProfilePage.class);
             intent.putExtra("userId", userId);
             intent.putExtra("username", username);
             startActivity(intent);
         });
+
+        // Set game layout click listeners
+        view.findViewById(R.id.wukong_layout).setOnClickListener(this::onClick);
+        view.findViewById(R.id.eldenring_layout).setOnClickListener(this::onClick);
+        view.findViewById(R.id.residentevil_layout).setOnClickListener(this::onClick);
 
         return view;
     }

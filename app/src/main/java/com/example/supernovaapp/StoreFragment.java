@@ -2,6 +2,7 @@ package com.example.supernovaapp;
 
 import android.content.Intent;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -33,6 +34,8 @@ public class StoreFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private DBHelper dbHelper;
+
     public StoreFragment() {
         // Required empty public constructor
     }
@@ -59,6 +62,8 @@ public class StoreFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_store, container, false);
 
+        dbHelper = new DBHelper(getContext());
+
         ImageButton profileBtn = view.findViewById(R.id.profile);
 
         // Carousel View Pager
@@ -81,6 +86,15 @@ public class StoreFragment extends Fragment {
             intent.putExtra("userId", userId);  // Pass the userId!
             startActivity(intent);
         });
+
+        String imageUriString = dbHelper.getProfilePicUriById(userId);
+        if (imageUriString != null && !imageUriString.isEmpty()) {
+            Uri imageUri = Uri.parse(imageUriString);
+            profileBtn.setImageURI(imageUri);
+        } else {
+            // Use default profile image if none saved
+            profileBtn.setImageResource(R.drawable.profileavatar);
+        }
 
         // Items for sale carousel
         sale_imageList.add(R.drawable.eldenring);

@@ -19,11 +19,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // Create users table
+        // Create users table with new bio and profile_pic_uri columns
         db.execSQL("CREATE TABLE users (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "username TEXT UNIQUE, " +
-                "password TEXT)");
+                "password TEXT, " +
+                "bio TEXT, " +                      // NEW column for bio
+                "profile_pic_uri TEXT)");          // NEW column for profile picture URI
 
         // Create cart table
         db.execSQL("CREATE TABLE cart (" +
@@ -56,7 +58,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY(userId) REFERENCES users(id))");
     }
 
-    // USER
+    // USER methods
     public boolean checkUserIfExists(String username) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM users WHERE username = ?", new String[]{username});
@@ -79,7 +81,6 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put("username", username);
         values.put("password", password);
         long result = db.insert("users", null, values);
-        // Fix here: insert returns -1 on failure, so check for != -1
         return result != -1;
     }
 
@@ -96,7 +97,6 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    // New method to fetch username by userId
     public String getUsernameById(int userId) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT username FROM users WHERE id = ?", new String[]{String.valueOf(userId)});
@@ -108,7 +108,49 @@ public class DBHelper extends SQLiteOpenHelper {
         return username;
     }
 
-    // CART
+    // NEW: Get bio by userId
+    public String getBioById(int userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT bio FROM users WHERE id = ?", new String[]{String.valueOf(userId)});
+        String bio = null;
+        if (cursor.moveToFirst()) {
+            bio = cursor.getString(0);
+        }
+        cursor.close();
+        return bio;
+    }
+
+    // NEW: Update bio
+    public boolean updateBio(int userId, String bio) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("bio", bio);
+        int rows = db.update("users", cv, "id = ?", new String[]{String.valueOf(userId)});
+        return rows > 0;
+    }
+
+    // NEW: Get profile picture URI by userId
+    public String getProfilePicUriById(int userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT profile_pic_uri FROM users WHERE id = ?", new String[]{String.valueOf(userId)});
+        String uri = null;
+        if (cursor.moveToFirst()) {
+            uri = cursor.getString(0);
+        }
+        cursor.close();
+        return uri;
+    }
+
+    // NEW: Update profile picture URI
+    public boolean updateProfileImageUri(int userId, String uri) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("profile_pic_uri", uri);
+        int rows = db.update("users", cv, "id = ?", new String[]{String.valueOf(userId)});
+        return rows > 0;
+    }
+
+    // CART methods
     public boolean insertToCart(int userId, String title, String studio, String price, String discount, int imageResId) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -151,7 +193,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return rowsDeleted > 0;
     }
 
-    // Library
+    // Library methods
     public boolean insertToLibrary(int userId, String title, String studio, String hrs, int imageResId) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -191,7 +233,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS users");
         db.execSQL("DROP TABLE IF EXISTS cart");
         db.execSQL("DROP TABLE IF EXISTS library");
-        db.execSQL("DROP TABLE IF EXISTS games"); // Added missing drop for games table
+        db.execSQL("DROP TABLE IF EXISTS games");
         onCreate(db);
     }
 }

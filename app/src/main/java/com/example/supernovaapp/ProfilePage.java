@@ -1,7 +1,6 @@
 package com.example.supernovaapp;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -16,7 +15,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfilePage extends AppCompatActivity {
 
-    private static final String TAG = "ProfilePage";
     private static final int EDIT_PROFILE_REQUEST = 1001;
 
     private ImageView backButton;
@@ -84,16 +82,30 @@ public class ProfilePage extends AppCompatActivity {
     }
 
     private void loadUserInfo() {
+        // Load username from DB
         String username = dbHelper.getUsernameById(userId);
         if (username != null && !username.isEmpty()) {
             usernameText.setText(username);
         } else {
-            usernameText.setText("JamezSunz");
+            usernameText.setText("JamezSunz"); // default
         }
 
-        SharedPreferences prefs = getSharedPreferences("user_prefs", MODE_PRIVATE);
-        String savedBio = prefs.getString("user_bio_" + userId, "No information");
-        bioText.setText(savedBio);
+        // Load profile image URI from DB
+        String imageUriString = dbHelper.getProfilePicUriById(userId);
+        if (imageUriString != null && !imageUriString.isEmpty()) {
+            Uri imageUri = Uri.parse(imageUriString);
+            profilePhoto.setImageURI(imageUri);
+        } else {
+            profilePhoto.setImageResource(R.drawable.profileavatar); // default avatar
+        }
+
+        // Load bio from DB
+        String bio = dbHelper.getBioById(userId);
+        if (bio != null && !bio.isEmpty()) {
+            bioText.setText(bio);
+        } else {
+            bioText.setText("No information");
+        }
     }
 
     @Override
@@ -107,15 +119,18 @@ public class ProfilePage extends AppCompatActivity {
 
             if (newUsername != null && !newUsername.isEmpty()) {
                 usernameText.setText(newUsername);
+                dbHelper.updateUsername(userId, newUsername);
             }
 
             if (newBio != null) {
                 bioText.setText(newBio);
+                dbHelper.updateBio(userId, newBio);
             }
 
-            if (imageUriString != null) {
+            if (imageUriString != null && !imageUriString.isEmpty()) {
                 Uri imageUri = Uri.parse(imageUriString);
                 profilePhoto.setImageURI(imageUri);
+                dbHelper.updateProfileImageUri(userId, imageUriString);
             }
         }
     }

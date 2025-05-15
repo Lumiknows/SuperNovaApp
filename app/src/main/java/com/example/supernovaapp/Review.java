@@ -14,15 +14,31 @@ import androidx.appcompat.app.AppCompatActivity;
 public class Review extends AppCompatActivity {
 
     private EditText reviewText;
-    private TextView submittedReview, gameTitle, gameStudio, gameHrs;
+    private TextView submittedReview, gameTitle, gameStudio, gameHrs, reviewUsername;
     private Button cancelBtn, reviewBtn;
     private SharedPreferences sharedPreferences;
     private ImageView gameImageView;
 
+    private DBHelper db;
+    private int userId;
+    private String username;
+
+    public static LibraryFragment newInstance(int userId, String username) {
+        LibraryFragment fragment = new LibraryFragment();
+        Bundle args = new Bundle();
+        args.putInt("userId", userId);
+        args.putString("username", username);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.review);  // This should point to your updated XML layout
+        setContentView(R.layout.review);
+
+        // Initialize DB
+        db = new DBHelper(this);
 
         // Initialize views
         reviewText = findViewById(R.id.reviewText);
@@ -33,61 +49,59 @@ public class Review extends AppCompatActivity {
         gameTitle = findViewById(R.id.reviewGameTitle);
         gameStudio = findViewById(R.id.reviewGameStudio);
         gameHrs = findViewById(R.id.reviewGameHrs);
+        reviewUsername = findViewById(R.id.reviewerName);
 
         // Get data from Intent
         String title = getIntent().getStringExtra("gameTitle");
         String hours = getIntent().getStringExtra("gameHrs");
         String studio = getIntent().getStringExtra("gameStudio");
-        int imageRes = getIntent().getIntExtra("gameImage", R.drawable.ready_or_not);  // Default image if not passed
+        int imageRes = getIntent().getIntExtra("gameImage", R.drawable.ready_or_not);
+        userId = getIntent().getIntExtra("userId", -1);
+        username = getIntent().getStringExtra("username");
 
-        // Set the received data to the corresponding views
+        // Refresh username from DB in case it's changed
+        if (userId != -1) {
+            String updatedUsername = db.getUsernameById(userId);
+            if (updatedUsername != null && !updatedUsername.isEmpty()) {
+                username = updatedUsername;
+            }
+        }
+
+        // Set the received data
         gameTitle.setText(title);
         gameStudio.setText(studio);
         gameHrs.setText(hours);
         gameImageView.setImageResource(imageRes);
+        reviewUsername.setText(username + "'s Review");
 
-        // Initialize SharedPreferences to save the review
+        // SharedPreferences for review storage
         sharedPreferences = getSharedPreferences("GameReviewPrefs", MODE_PRIVATE);
+        String reviewKey = "review_" + title;
 
-        // Use the game title as the key to store the review in SharedPreferences
-        String reviewKey = "review_" + title;  // Unique key for each game based on the title
-
-        // Load the saved review for the specific game if it exists
         String savedReview = sharedPreferences.getString(reviewKey, null);
         if (savedReview != null) {
-            // If a review is already saved, display it
             submittedReview.setText(savedReview);
             submittedReview.setVisibility(View.VISIBLE);
         }
 
-        // Set up Cancel button click listener
-        cancelBtn.setOnClickListener(v -> finish());  // Close the activity and go back
+        cancelBtn.setOnClickListener(v -> finish());
 
-        // Set up Review button click listener
         reviewBtn.setOnClickListener(v -> {
-            // Get the entered review text
             String userReview = reviewText.getText().toString().trim();
             if (userReview.isEmpty()) {
                 Toast.makeText(Review.this, "Please write a review before submitting!", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // Show the submitted review in the TextView above the EditText
             submittedReview.setText(userReview);
             submittedReview.setVisibility(View.VISIBLE);
-
-            // Clear the EditText
             reviewText.setText("");
 
-            // Save the review to SharedPreferences with the unique key
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString(reviewKey, userReview);  // Save the entered review with the game title as key
+            editor.putString(reviewKey, userReview);
             editor.apply();
 
-            // Show a Toast to confirm submission
             Toast.makeText(Review.this, "Review submitted!", Toast.LENGTH_SHORT).show();
-
-            // Close the review activity after submitting the review
             finish();
         });
     }
