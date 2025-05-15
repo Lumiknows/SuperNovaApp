@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +28,8 @@ public class ProfileEdit extends AppCompatActivity {
 
     private DBHelper dbHelper;
 
+    private ImageView backButton;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +42,9 @@ public class ProfileEdit extends AppCompatActivity {
         bioEdit = findViewById(R.id.bio_edit);
         saveButton = findViewById(R.id.save_button);
         cancelButton = findViewById(R.id.cancel_button);
+        backButton = findViewById(R.id.back_button);
+
+        backButton.setOnClickListener(v -> finish());
 
         userId = getIntent().getIntExtra("userId", -1);
         if (userId == -1) {
