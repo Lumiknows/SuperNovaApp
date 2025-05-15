@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         int userId = getIntent().getIntExtra("userId", -1);
+        String username = getIntent().getStringExtra("username"); // ✅ Get the username
 
         frameLayout = findViewById(R.id.framelayout);
         tabLayout = findViewById(R.id.bottom_tab_layout);
@@ -47,13 +48,13 @@ public class MainActivity extends AppCompatActivity {
                         fragment = StoreFragment.newInstance(userId);
                         break;
                     case 1:
-                        fragment = LibraryFragment.newInstance(userId);
+                        fragment = LibraryFragment.newInstance(userId, username);
                         break;
                     case 2:
-                        fragment = CartFragment.newInstance(userId);
+                        fragment = CartFragment.newInstance(userId, username);
                         break;
                     case 3:
-                        fragment = NotifFragment.newInstance(userId);
+                        fragment = NotifFragment.newInstance(userId, username);
                         break;
                 }
 

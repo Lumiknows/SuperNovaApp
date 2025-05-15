@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.sql.SQLInput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +36,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "imageResId INTEGER, " +
                 "FOREIGN KEY(user_id) REFERENCES users(id))");
 
-        // ✅ Create games table
+        // Create games table
         db.execSQL("CREATE TABLE games (" +
                 "game_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "title TEXT, " +
@@ -66,13 +65,22 @@ public class DBHelper extends SQLiteOpenHelper {
         return exists;
     }
 
+    public boolean updateUsername(int userId, String newUsername) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("username", newUsername);
+        int rowsAffected = db.update("users", cv, "id = ?", new String[]{String.valueOf(userId)});
+        return rowsAffected > 0;
+    }
+
     public boolean insertUser(String username, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("username", username);
         values.put("password", password);
         long result = db.insert("users", null, values);
-        return result != 1;
+        // Fix here: insert returns -1 on failure, so check for != -1
+        return result != -1;
     }
 
     public int validateUser(String username, String password) {
@@ -82,11 +90,22 @@ public class DBHelper extends SQLiteOpenHelper {
             int userId = cursor.getInt(0);
             cursor.close();
             return userId;
-        }
-        else {
+        } else {
             cursor.close();
             return -1;
         }
+    }
+
+    // New method to fetch username by userId
+    public String getUsernameById(int userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT username FROM users WHERE id = ?", new String[]{String.valueOf(userId)});
+        String username = null;
+        if (cursor.moveToFirst()) {
+            username = cursor.getString(0);
+        }
+        cursor.close();
+        return username;
     }
 
     // CART
@@ -103,13 +122,11 @@ public class DBHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
-    // Modified getCartItemByUserId to handle empty cart gracefully
     public List<CartItem> getCartItemByUserId(int userId) {
         List<CartItem> cartList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM cart WHERE user_id = ?", new String[]{String.valueOf(userId)});
 
-        // Handle empty cart gracefully by checking if the cursor contains data
         if (cursor != null && cursor.moveToFirst()) {
             do {
                 int id = cursor.getInt(cursor.getColumnIndexOrThrow("cartId"));
@@ -122,8 +139,9 @@ public class DBHelper extends SQLiteOpenHelper {
                 cartList.add(new CartItem(id, title, studio, price, discount, imageResId));
             } while (cursor.moveToNext());
         }
+        if (cursor != null)
+            cursor.close();
 
-        cursor.close();
         return cartList;
     }
 
@@ -147,7 +165,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public List<LibraryItem> getLibraryByUserId(int userId) {
-        List<LibraryItem> librayList = new ArrayList<>();
+        List<LibraryItem> libraryList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM library WHERE userId = ?", new String[]{String.valueOf(userId)});
 
@@ -159,19 +177,21 @@ public class DBHelper extends SQLiteOpenHelper {
                 String hrs = cursor.getString(cursor.getColumnIndexOrThrow("hrs"));
                 int imageResId = cursor.getInt(cursor.getColumnIndexOrThrow("lib_imageResId"));
 
-                librayList.add(new LibraryItem(id, title, studio, hrs, imageResId));
+                libraryList.add(new LibraryItem(id, title, studio, hrs, imageResId));
             } while (cursor.moveToNext());
         }
-        cursor.close();
-        return librayList;
+        if (cursor != null)
+            cursor.close();
+
+        return libraryList;
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // Drop existing tables and recreate them if version is upgraded
         db.execSQL("DROP TABLE IF EXISTS users");
         db.execSQL("DROP TABLE IF EXISTS cart");
         db.execSQL("DROP TABLE IF EXISTS library");
+        db.execSQL("DROP TABLE IF EXISTS games"); // Added missing drop for games table
         onCreate(db);
     }
 }

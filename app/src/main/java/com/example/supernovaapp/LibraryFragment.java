@@ -22,12 +22,18 @@ public class LibraryFragment extends Fragment {
     private List<LibraryItem> libraryItems;
     private TextView emptyLibraryMessage;
 
+    private DBHelper db;
+
+    private int userId;
+    private String username;
+
     public LibraryFragment() {}
 
-    public static LibraryFragment newInstance(int userId) {
+    public static LibraryFragment newInstance(int userId, String username) {
         LibraryFragment fragment = new LibraryFragment();
         Bundle args = new Bundle();
         args.putInt("userId", userId);
+        args.putString("username", username);
         fragment.setArguments(args);
         return fragment;
     }
@@ -37,36 +43,45 @@ public class LibraryFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_library, container, false);
 
+        // Get args from bundle
+        if (getArguments() != null) {
+            userId = getArguments().getInt("userId", -1);
+            username = getArguments().getString("username", "user");
+        }
+
+        db = new DBHelper(getContext());
+        userId = getArguments().getInt("userId", -1);
+
+        // Setup views
         libraryRecyclerView = rootView.findViewById(R.id.libraryRecyclerView);
         libraryRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         emptyLibraryMessage = rootView.findViewById(R.id.emptyLibraryMessage);
+        TextView cartTitle = rootView.findViewById(R.id.libraryTitle);
+        String username = db.getUsernameById(userId);
+        cartTitle.setText(username + "'s Library");
 
         ImageButton profileBtn = rootView.findViewById(R.id.profile);
-
         profileBtn.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), ProfilePage.class);
+            intent.putExtra("userId", userId);
+            intent.putExtra("username", username);
             startActivity(intent);
         });
 
-        // Sample data
-        //libraryItems.add(new LibraryItem("Phantom Blade Zero", "S-Games", "48.2 hrs", R.drawable.metro));
-        //libraryItems.add(new LibraryItem("Monster Hunter", "CapCom Co.", "8.9 hrs", R.drawable.monsterhunter));
-
-        libraryItems = new ArrayList<>();
+        // Load library items from DB
         DBHelper db = new DBHelper(getContext());
-        int userId = getArguments().getInt("userId", -1);
         libraryItems = db.getLibraryByUserId(userId);
-
-        updateLibraryUI();
 
         libraryAdapter = new LibraryAdapter(libraryItems);
         libraryRecyclerView.setAdapter(libraryAdapter);
+
+        updateLibraryUI();
 
         return rootView;
     }
 
     private void updateLibraryUI() {
-        if (libraryItems.isEmpty()) {
+        if (libraryItems == null || libraryItems.isEmpty()) {
             emptyLibraryMessage.setVisibility(View.VISIBLE);
             libraryRecyclerView.setVisibility(View.GONE);
         } else {

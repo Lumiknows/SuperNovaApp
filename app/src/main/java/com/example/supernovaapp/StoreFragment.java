@@ -78,6 +78,7 @@ public class StoreFragment extends Fragment {
 
         profileBtn.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), ProfilePage.class);
+            intent.putExtra("userId", userId);  // Pass the userId!
             startActivity(intent);
         });
 

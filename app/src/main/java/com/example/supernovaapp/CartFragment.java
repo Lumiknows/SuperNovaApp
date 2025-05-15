@@ -43,10 +43,11 @@ public class CartFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static CartFragment newInstance(int userId) {
+    public static CartFragment newInstance(int userId, String username) {
         CartFragment fragment = new CartFragment();
         Bundle args = new Bundle();
         args.putInt("userId", userId);
+        args.putString("username", username); // ✅ Pass the username
         fragment.setArguments(args);
         return fragment;
     }
@@ -61,7 +62,7 @@ public class CartFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_cart, container, false);
 
-        // Views
+        // Initialize views
         cartRecyclerView = rootView.findViewById(R.id.cartRecyclerView);
         emptyCartMessage = rootView.findViewById(R.id.emptyCartMessage);
         buyButton = rootView.findViewById(R.id.buyButton);
@@ -69,16 +70,20 @@ public class CartFragment extends Fragment {
         checkoutTotal = rootView.findViewById(R.id.checkoutTotal);
         confirmCheckout = rootView.findViewById(R.id.confirmCheckout);
         cancelCheckout = rootView.findViewById(R.id.cancelCheckout);
-
-        // ✅ NEW: Bind checkoutGameList from layout
         checkoutGameList = rootView.findViewById(R.id.checkoutGameList);
 
-        cartItemList = new ArrayList<>();
+        // ✅ Initialize DB and get userId from arguments
         db = new DBHelper(getContext());
         userId = getArguments().getInt("userId", -1);
-        Log.e("USER_ID_CHECK", "userId: " + userId);
-        cartItemList = db.getCartItemByUserId(userId);
 
+        // ✅ Set cart title with username
+        TextView cartTitle = rootView.findViewById(R.id.cartTitle);
+        String username = db.getUsernameById(userId);
+        cartTitle.setText(username + "'s Cart");
+
+        // Load cart items
+        cartItemList = new ArrayList<>();
+        cartItemList = db.getCartItemByUserId(userId);
         updateCartUI();
 
         cartAdapter = new CartAdapter(cartItemList, position -> {
@@ -100,7 +105,7 @@ public class CartFragment extends Fragment {
         cartRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         cartRecyclerView.setAdapter(cartAdapter);
 
-        // ✅ Buy Button click
+        // Buy Button click
         buyButton.setOnClickListener(v -> {
             checkoutGameList.removeAllViews(); // Clear previous game titles
             double totalPrice = 0;
@@ -138,8 +143,6 @@ public class CartFragment extends Fragment {
             Toast.makeText(getContext(), "Purchase confirmed!", Toast.LENGTH_SHORT).show();
             checkoutOverlay.setVisibility(View.GONE);
 
-            db = new DBHelper(getContext());
-            userId = getArguments().getInt("userId", -1);
             String hrs = "0.0 hrs";
 
             for (CartItem item : cartItemList) {
@@ -150,12 +153,10 @@ public class CartFragment extends Fragment {
 
                     if (deletedFromCart) {
                         Toast.makeText(getContext(), item.getTitle() + " added to library", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
+                    } else {
                         Toast.makeText(getContext(), "Failed to remove " + item.getTitle() + " from cart", Toast.LENGTH_SHORT).show();
                     }
-                }
-                else {
+                } else {
                     Toast.makeText(getContext(), "Failed to add " + item.getTitle() + " to library", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -170,10 +171,12 @@ public class CartFragment extends Fragment {
             checkoutOverlay.setVisibility(View.GONE);
         });
 
+        // Profile button
         ImageButton profileBtn = rootView.findViewById(R.id.profile);
-
         profileBtn.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), ProfilePage.class);
+            intent.putExtra("userId", userId);
+            intent.putExtra("username", username);
             startActivity(intent);
         });
 
