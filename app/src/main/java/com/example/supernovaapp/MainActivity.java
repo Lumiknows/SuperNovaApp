@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setTabIconTint(getResources().getColorStateList(R.color.tab_icon_color));
 
         tabLayout.addTab(tabLayout.newTab().setText("").setIcon(R.drawable.store));
+        tabLayout.addTab(tabLayout.newTab().setText("").setIcon(R.drawable.search_button));
         tabLayout.addTab(tabLayout.newTab().setText("").setIcon(R.drawable.library));
         tabLayout.addTab(tabLayout.newTab().setText("").setIcon(R.drawable.cart));
         tabLayout.addTab(tabLayout.newTab().setText("").setIcon(R.drawable.notif_bell));
@@ -48,12 +49,15 @@ public class MainActivity extends AppCompatActivity {
                         fragment = StoreFragment.newInstance(userId);
                         break;
                     case 1:
-                        fragment = LibraryFragment.newInstance(userId, username);
+                        fragment = SearchFragment.newInstance(userId);
                         break;
                     case 2:
-                        fragment = CartFragment.newInstance(userId, username);
+                        fragment = LibraryFragment.newInstance(userId, username);
                         break;
                     case 3:
+                        fragment = CartFragment.newInstance(userId, username);
+                        break;
+                    case 4:
                         fragment = NotifFragment.newInstance(userId, username);
                         break;
                 }
