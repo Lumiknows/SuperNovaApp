@@ -95,11 +95,11 @@ android:background="#0D0D0D">
 
         <!-- In-Game Status -->
         <TextView
-            android:id="@+id/in_game_status"
+            android:id="@+id/bio_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="IN GAME: Silent Hill 2"
-            android:textColor="#A6E964"
+            android:text="No Information."
+            android:textColor="#FFFF"
             android:textSize="14sp"
             android:layout_below="@+id/username"
             android:layout_centerHorizontal="true"
@@ -111,7 +111,7 @@ android:background="#0D0D0D">
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_below="@+id/in_game_status"
+            android:layout_below="@+id/bio_text"
             android:gravity="center">
 
             <LinearLayout

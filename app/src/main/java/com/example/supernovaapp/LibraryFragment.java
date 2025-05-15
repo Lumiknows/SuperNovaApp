@@ -1,6 +1,7 @@
 package com.example.supernovaapp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LibraryFragment extends Fragment {
@@ -23,7 +23,6 @@ public class LibraryFragment extends Fragment {
     private TextView emptyLibraryMessage;
 
     private DBHelper db;
-
     private int userId;
     private String username;
 
@@ -50,17 +49,27 @@ public class LibraryFragment extends Fragment {
         }
 
         db = new DBHelper(getContext());
-        userId = getArguments().getInt("userId", -1);
 
         // Setup views
         libraryRecyclerView = rootView.findViewById(R.id.libraryRecyclerView);
         libraryRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         emptyLibraryMessage = rootView.findViewById(R.id.emptyLibraryMessage);
+
         TextView cartTitle = rootView.findViewById(R.id.libraryTitle);
-        String username = db.getUsernameById(userId);
+        username = db.getUsernameById(userId); // Refresh from DB in case updated
         cartTitle.setText(username + "'s Library");
 
         ImageButton profileBtn = rootView.findViewById(R.id.profile);
+
+        // Load and show profile picture like StoreFragment
+        String imageUriString = db.getProfilePicUriById(userId);
+        if (imageUriString != null && !imageUriString.isEmpty()) {
+            Uri imageUri = Uri.parse(imageUriString);
+            profileBtn.setImageURI(imageUri);
+        } else {
+            profileBtn.setImageResource(R.drawable.profileavatar);
+        }
+
         profileBtn.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), ProfilePage.class);
             intent.putExtra("userId", userId);
@@ -69,16 +78,25 @@ public class LibraryFragment extends Fragment {
         });
 
         // Load library items from DB
-        DBHelper db = new DBHelper(getContext());
         libraryItems = db.getLibraryByUserId(userId);
-
-        libraryAdapter = new LibraryAdapter(libraryItems);
+        libraryAdapter = new LibraryAdapter(libraryItems, userId, username);
         libraryRecyclerView.setAdapter(libraryAdapter);
 
         updateLibraryUI();
 
         return rootView;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // Reload review states from SharedPreferences
+        if (libraryAdapter != null) {
+            libraryAdapter.notifyDataSetChanged(); // this will trigger onBindViewHolder again
+        }
+    }
+
 
     private void updateLibraryUI() {
         if (libraryItems == null || libraryItems.isEmpty()) {

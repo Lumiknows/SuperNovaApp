@@ -101,7 +101,7 @@
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="JamezSunz"
+                android:text="username"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 android:hint="Enter your username"
@@ -109,6 +109,41 @@
                 android:background="@android:color/transparent"
                 android:padding="12dp" />
         </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/search_background"
+        android:padding="16dp"
+        android:layout_marginTop="24dp"
+        android:elevation="4dp"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bio"
+            android:textColor="#BBBBBB"
+            android:textSize="14sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp" />
+
+        <EditText
+            android:id="@+id/bio_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter your bio"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textColorHint="#FFFF"
+            android:inputType="textMultiLine"
+            android:minLines="2"
+            android:background="@android:color/transparent"
+            android:padding="12dp"
+            android:layout_marginTop="16dp"/>
+
+    </LinearLayout>
 
         <!-- Buttons Container -->
         <LinearLayout

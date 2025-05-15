@@ -2,8 +2,8 @@ package com.example.supernovaapp;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,25 +36,17 @@ public class CartFragment extends Fragment {
     private DBHelper db;
     private int userId;
 
-    // ✅ NEW: Checkout game list container
     private LinearLayout checkoutGameList;
 
-    public CartFragment() {
-        // Required empty public constructor
-    }
+    public CartFragment() {}
 
     public static CartFragment newInstance(int userId, String username) {
         CartFragment fragment = new CartFragment();
         Bundle args = new Bundle();
         args.putInt("userId", userId);
-        args.putString("username", username); // ✅ Pass the username
+        args.putString("username", username);
         fragment.setArguments(args);
         return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -72,17 +64,32 @@ public class CartFragment extends Fragment {
         cancelCheckout = rootView.findViewById(R.id.cancelCheckout);
         checkoutGameList = rootView.findViewById(R.id.checkoutGameList);
 
-        // ✅ Initialize DB and get userId from arguments
         db = new DBHelper(getContext());
         userId = getArguments().getInt("userId", -1);
-
-        // ✅ Set cart title with username
-        TextView cartTitle = rootView.findViewById(R.id.cartTitle);
         String username = db.getUsernameById(userId);
+
+        // Set cart title
+        TextView cartTitle = rootView.findViewById(R.id.cartTitle);
         cartTitle.setText(username + "'s Cart");
 
+        // ✅ Profile Button Setup with Image
+        ImageButton profileBtn = rootView.findViewById(R.id.profile);
+        String imageUriString = db.getProfilePicUriById(userId);
+        if (imageUriString != null && !imageUriString.isEmpty()) {
+            Uri imageUri = Uri.parse(imageUriString);
+            profileBtn.setImageURI(imageUri);
+        } else {
+            profileBtn.setImageResource(R.drawable.profileavatar);
+        }
+
+        profileBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), ProfilePage.class);
+            intent.putExtra("userId", userId);
+            intent.putExtra("username", username);
+            startActivity(intent);
+        });
+
         // Load cart items
-        cartItemList = new ArrayList<>();
         cartItemList = db.getCartItemByUserId(userId);
         updateCartUI();
 
@@ -107,7 +114,7 @@ public class CartFragment extends Fragment {
 
         // Buy Button click
         buyButton.setOnClickListener(v -> {
-            checkoutGameList.removeAllViews(); // Clear previous game titles
+            checkoutGameList.removeAllViews();
             double totalPrice = 0;
 
             for (CartItem item : cartItemList) {
@@ -130,7 +137,6 @@ public class CartFragment extends Fragment {
                 gameLayout.addView(gamePrice);
 
                 checkoutGameList.addView(gameLayout);
-
                 totalPrice += item.getPriceAsDouble();
             }
 
@@ -142,15 +148,12 @@ public class CartFragment extends Fragment {
         confirmCheckout.setOnClickListener(v -> {
             Toast.makeText(getContext(), "Purchase confirmed!", Toast.LENGTH_SHORT).show();
             checkoutOverlay.setVisibility(View.GONE);
-
             String hrs = "0.0 hrs";
 
             for (CartItem item : cartItemList) {
                 boolean addedToLibrary = db.insertToLibrary(userId, item.title, item.studio, hrs, item.getImageResource());
-
                 if (addedToLibrary) {
                     boolean deletedFromCart = db.deleteCartItemById(item.getId());
-
                     if (deletedFromCart) {
                         Toast.makeText(getContext(), item.getTitle() + " added to library", Toast.LENGTH_SHORT).show();
                     } else {
@@ -169,15 +172,6 @@ public class CartFragment extends Fragment {
         // Cancel Checkout
         cancelCheckout.setOnClickListener(v -> {
             checkoutOverlay.setVisibility(View.GONE);
-        });
-
-        // Profile button
-        ImageButton profileBtn = rootView.findViewById(R.id.profile);
-        profileBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), ProfilePage.class);
-            intent.putExtra("userId", userId);
-            intent.putExtra("username", username);
-            startActivity(intent);
         });
 
         return rootView;

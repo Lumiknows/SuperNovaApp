@@ -18,9 +18,14 @@ import java.util.List;
 public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHolder> {
 
     private List<LibraryItem> itemList;
+    private int userId;
+    private String username;
 
-    public LibraryAdapter(List<LibraryItem> itemList) {
+    // Updated constructor to accept userId and username
+    public LibraryAdapter(List<LibraryItem> itemList, int userId, String username) {
         this.itemList = itemList;
+        this.userId = userId;
+        this.username = username;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -75,35 +80,34 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
 
         if (isDownloaded) {
             holder.downloadBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#A6E964")));
-            holder.downloadBtn.setImageResource(R.drawable.ic_check); // ✅ Your downloaded icon
-            holder.downloadBtn.setEnabled(false); // Disable download button after download
+            holder.downloadBtn.setImageResource(R.drawable.ic_check);
+            holder.downloadBtn.setEnabled(false);
         } else {
             holder.downloadBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#252525")));
-            holder.downloadBtn.setImageResource(R.drawable.download); // Original download icon
-            holder.downloadBtn.setEnabled(true); // Enable download button if not downloaded
+            holder.downloadBtn.setImageResource(R.drawable.download);
+            holder.downloadBtn.setEnabled(true);
         }
 
-        // Handle review button click
+        // Handle review button click with userId and username passed
         holder.reviewBtn.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), Review.class);
             intent.putExtra("gameTitle", item.getTitle());
             intent.putExtra("gameImage", item.getImageResource());
             intent.putExtra("gameStudio", item.getStudio());
             intent.putExtra("gameHrs", item.getHrs());
+            intent.putExtra("userId", userId);
+            intent.putExtra("username", username);
             v.getContext().startActivity(intent);
         });
 
         // Handle download button click
         holder.downloadBtn.setOnClickListener(v -> {
-            // Mark this game as downloaded in SharedPreferences
             sharedPreferences.edit().putBoolean(downloadKey, true).apply();
 
-            // Update the UI immediately
             holder.downloadBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4CAF50")));
-            holder.downloadBtn.setImageResource(R.drawable.ic_check); // ✅ Your downloaded icon
-            holder.downloadBtn.setEnabled(false); // Disable the button after download
+            holder.downloadBtn.setImageResource(R.drawable.ic_check);
+            holder.downloadBtn.setEnabled(false);
 
-            // Show the download popup
             Intent intent = new Intent(v.getContext(), DownloadPopupActivity.class);
             v.getContext().startActivity(intent);
         });
