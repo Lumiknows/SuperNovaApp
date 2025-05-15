@@ -228,6 +228,24 @@ public class DBHelper extends SQLiteOpenHelper {
         return libraryList;
     }
 
+    // Check if item is already in cart
+    public boolean isInCart(int userId, String title) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM cart WHERE user_id = ? AND title = ?", new String[]{String.valueOf(userId), title});
+        boolean exists = cursor.getCount() > 0;
+        cursor.close();
+        return exists;
+    }
+
+    // Check if item is already in library
+    public boolean isInLibrary(int userId, String title) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM library WHERE userId = ? AND lib_title = ?", new String[]{String.valueOf(userId), title});
+        boolean exists = cursor.getCount() > 0;
+        cursor.close();
+        return exists;
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS users");
