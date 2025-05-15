@@ -6,11 +6,14 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -70,9 +73,16 @@ public class StoreFragment extends Fragment {
         ViewPager2 sale_viewPager2 = view.findViewById(R.id.sale_carousel);
         ViewPager2 rec_viewPager2 = view.findViewById(R.id.recommended_carousel);
 
+        // Recycler view for extra game list
+        RecyclerView recyclerView = view.findViewById(R.id.storeRecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
         // List Array for Carousel Items
         List<Integer> sale_imageList = new ArrayList<>();
         List<Integer> rec_imageList = new ArrayList<>();
+
+        // Store list for extra games
+        List<StoreItem> store_itemList = new ArrayList<>();
 
         // Get username from login activity
         int userId = getArguments().getInt("userId");
@@ -80,6 +90,9 @@ public class StoreFragment extends Fragment {
         // Carousel Adapters
         CarouselAdapter saleCarouselAdapter = new CarouselAdapter(sale_imageList, getContext(), userId);
         CarouselAdapter recCarouselAdapter = new CarouselAdapter(rec_imageList, getContext(), userId);
+
+        // Store Adapter
+        StoreAdapter storeAdapter = new StoreAdapter(getContext(), store_itemList, userId);
 
         profileBtn.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), ProfilePage.class);
@@ -117,8 +130,25 @@ public class StoreFragment extends Fragment {
         rec_imageList.add(R.drawable.ghost);
         rec_imageList.add(R.drawable.repo);
 
+        // Extra games
+        store_itemList.add(new StoreItem("Elden Ring", "Studio: FromSoftware", "Price: ₱2399.00", R.drawable.eldenring));
+        store_itemList.add(new StoreItem("Read or Not", "Studio: VOID Interactive", "Price: ₱1000.00", R.drawable.ready_or_not));
+        store_itemList.add(new StoreItem("Resident Evil", "Studio: Capcom Co.", "Price: ₱1979.00", R.drawable.residentevil));
+        store_itemList.add(new StoreItem("Subverse", "Studio: Studio FOW", "Price: ₱1680.25", R.drawable.subverse));
+        store_itemList.add(new StoreItem("Crimson Desert", "Studio: Pearl Abyss", "Price: ₱3239.00", R.drawable.crimson));
+        store_itemList.add(new StoreItem("GTA VI", "Studio: Rockstar Games", "Price: TBD", R.drawable.gta6));
+        store_itemList.add(new StoreItem("Black Myth Wukong", "Studio: Game Science", "Price: ₱2599.00", R.drawable.blackwukong));
+        store_itemList.add(new StoreItem("Ark 2", "Studio: Studio Wildcard", "Price: ₱2790.10", R.drawable.ark2));
+        store_itemList.add(new StoreItem("Bloodborne", "Studio: FromSoftware", "Price: ₱2230.15", R.drawable.bloodborne2));
+        store_itemList.add(new StoreItem("Dragon's Dogma 2", "Studio: Capcom", "Price: TBD", R.drawable.dragon2));
+        store_itemList.add(new StoreItem("Ghost Recon Breakpoint", "Studio: Ubisoft", "Price: ₱3345.99", R.drawable.ghost));
+        store_itemList.add(new StoreItem("Helltaker", "Studio: Vanripper", "Price: ₱280.40", R.drawable.helltaker));
+        store_itemList.add(new StoreItem("Lethal Company", "Studio: Lethal Team", "Price: ₱290.40", R.drawable.lethal));
+        store_itemList.add(new StoreItem("Mortal Kombat 11", "Studio: NetherRealm Studios", "Price: ₱3346.99", R.drawable.mortal));
+
         sale_viewPager2.setAdapter(saleCarouselAdapter);
         rec_viewPager2.setAdapter(recCarouselAdapter);
+        recyclerView.setAdapter(storeAdapter);
 
         return view;
     }

@@ -108,29 +108,29 @@ public class GameView4 extends AppCompatActivity {
 
         // Add to Cart Toggle
         addToCartBtn.setOnClickListener(v -> {
-            if (!isAddedToCart) {
-                String title = ((TextView) findViewById(R.id.title)).getText().toString();
-                String studio = ((TextView) findViewById(R.id.studio)).getText().toString();
-                String price = ((TextView) findViewById(R.id.price)).getText().toString();
-                String discount = "-";
-                int imageResId = R.drawable.ready_or_not;
+            String title = ((TextView) findViewById(R.id.title)).getText().toString();
+            String studio = ((TextView) findViewById(R.id.studio)).getText().toString();
+            String price = ((TextView) findViewById(R.id.price)).getText().toString();
+            String discount = "-";
+            int imageResId = R.drawable.ready_or_not;
 
-                int userId = getIntent().getIntExtra("userId", -1);
-                Log.e("USER_ID_CHECK", "userId: " + userId);
+            int userId = getIntent().getIntExtra("userId", -1);
+            Log.e("USER_ID_CHECK", "userId: " + userId);
 
+            if (db.isInCart(userId, title)) {
+                Toast.makeText(this, "Item already in cart", Toast.LENGTH_SHORT).show();
+            } else if (db.isInLibrary(userId, title)) {
+                Toast.makeText(this, "Item already in library", Toast.LENGTH_SHORT).show();
+            } else {
                 boolean success = db.insertToCart(userId, title, studio, price, discount, imageResId);
                 if (success) {
                     Toast.makeText(this, "Item added to cart", Toast.LENGTH_SHORT).show();
-                    addToCartBtn.setText("Added to Cart"); // Remove text
-                    addToCartBtn.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0); // Clear any previous icon
-                }
-                else {
+                    addToCartBtn.setText("Added to Cart");
+                    addToCartBtn.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                } else {
                     Toast.makeText(this, "Failed to add item", Toast.LENGTH_SHORT).show();
                 }
-            } else {
-                Toast.makeText(this, "Item already in cart", Toast.LENGTH_SHORT).show();
             }
-            isAddedToCart = true;
         });
 
 

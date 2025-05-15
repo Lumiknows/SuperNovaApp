@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#111111"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="16dp">
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/supernova_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SUPERNOVA"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:paddingBottom="8dp" />
+
+        <!-- Search bar and profile row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <EditText
+                android:id="@+id/search_bar"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/search_background"
+                android:drawableEnd="@drawable/search_button"
+                android:paddingHorizontal="16dp"
+                android:singleLine="true"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#AAAAAA"
+                android:hint="Search" />
+
+            <ImageButton
+                android:id="@+id/profile"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/circle_mask"
+                android:scaleType="centerCrop"
+                android:clipToOutline="true"
+                android:src="@drawable/profileavatar"
+                android:contentDescription="@string/profileDescription" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- RecyclerView for Library -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/searchRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingTop="8dp"
+        android:clipToPadding="false" />
+</LinearLayout>
