@@ -64,6 +64,11 @@ public class ProfilePage extends AppCompatActivity {
                 } else if (item.getItemId() == R.id.editprofile) {
                     openEditPage();
                     return true;
+                } else if (item.getItemId() == R.id.changepass) {
+                    Intent intent = new Intent(this, ChangePasswordActivity.class);
+                    intent.putExtra("userId", userId);
+                    startActivity(intent);
+                    return true;
                 }
                 return false;
             });
@@ -87,7 +92,7 @@ public class ProfilePage extends AppCompatActivity {
         if (username != null && !username.isEmpty()) {
             usernameText.setText(username);
         } else {
-            usernameText.setText("JamezSunz"); // default
+            usernameText.setText("username"); // default
         }
 
         // Load profile image URI from DB

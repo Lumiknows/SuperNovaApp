@@ -228,6 +228,27 @@ public class DBHelper extends SQLiteOpenHelper {
         return libraryList;
     }
 
+    public boolean updatePassword(int userId, String newPassword) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("password", newPassword);
+        int rowsAffected = db.update("users", cv, "id = ?", new String[]{String.valueOf(userId)});
+        return rowsAffected > 0;
+    }
+
+    public String getPasswordById(int userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT password FROM users WHERE id = ?", new String[]{String.valueOf(userId)});
+        String password = null;
+        if (cursor.moveToFirst()) {
+            password = cursor.getString(0);
+        }
+        cursor.close();
+        return password;
+    }
+
+
+
     // Check if item is already in cart
     public boolean isInCart(int userId, String title) {
         SQLiteDatabase db = this.getReadableDatabase();

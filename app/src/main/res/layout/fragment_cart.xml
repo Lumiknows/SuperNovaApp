@@ -11,37 +11,39 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Header -->
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/store_header"
             android:layout_width="match_parent"
-            android:layout_height="85dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingBottom="16dp">
+            android:layout_height="90dp"
+            android:padding="10dp">
 
+            <!-- TODO! android:text="@string/headerText should be change to the actual logo" -->
             <TextView
-                android:layout_width="0dp"
+                android:id="@+id/supernova_title"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="SUPERNOVA"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"
-                android:textSize="16sp"
-                android:textAlignment="center"/>
+                android:textSize="18sp"
+                android:gravity="center"
+                android:paddingBottom="8dp" />
 
+            <!-- Profile Icon -->
             <ImageButton
                 android:id="@+id/profile"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="8dp"
                 android:scaleType="centerCrop"
                 android:adjustViewBounds="true"
                 android:background="@drawable/circle_mask"
                 android:clipToOutline="true"
                 android:src="@drawable/profileavatar"
-                android:contentDescription="@string/profileDescription" />
-        </LinearLayout>
+                android:contentDescription="@string/profileDescription"/>
+        </RelativeLayout>
 
         <!-- Title -->
         <TextView
