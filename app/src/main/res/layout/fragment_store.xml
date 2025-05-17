@@ -8,19 +8,19 @@
         android:id="@+id/store_header"
         android:layout_width="match_parent"
         android:layout_height="90dp"
-        android:padding="10dp">
+        android:layout_marginTop="16dp">
 
         <!-- TODO! android:text="@string/headerText should be change to the actual logo" -->
         <TextView
             android:id="@+id/supernova_title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="@string/headerText"
-            android:layout_marginTop="2dp"
+            android:text="SUPERNOVA"
             android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:paddingBottom="8dp" />
 
         <!-- Profile Icon -->
         <ImageButton

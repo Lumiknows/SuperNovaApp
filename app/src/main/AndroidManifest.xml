@@ -37,13 +37,12 @@
         <activity android:name=".GameView6" />
         <activity android:name=".GameView7" />
         <activity android:name=".Review" />
+        <activity android:name=".ChangePasswordActivity"/>
 
         <!-- Lottie-based full-screen download popup -->
         <activity
             android:name=".DownloadPopupActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
             android:exported="false" />
-
     </application>
-
 </manifest>

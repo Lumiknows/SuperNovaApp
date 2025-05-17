@@ -79,13 +79,21 @@ public class NotifFragment extends Fragment {
     private void onClick(View v) {
         int id = v.getId();
         Intent intent = null;
+        TextView textViewToUnbold = null;
 
         if (id == R.id.wukong_layout) {
             intent = new Intent(getActivity(), GameView1.class);
+            textViewToUnbold = getView().findViewById(R.id.wukong_text);
         } else if (id == R.id.eldenring_layout) {
             intent = new Intent(getActivity(), GameView2.class);
+            textViewToUnbold = getView().findViewById(R.id.eldenring_text);
         } else if (id == R.id.residentevil_layout) {
             intent = new Intent(getActivity(), GameView3.class);
+            textViewToUnbold = getView().findViewById(R.id.resident_text);
+        }
+
+        if (textViewToUnbold != null) {
+            textViewToUnbold.setTypeface(null, android.graphics.Typeface.NORMAL);
         }
 
         if (intent != null) {
